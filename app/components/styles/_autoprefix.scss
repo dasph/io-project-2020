@@ -1,0 +1,5 @@
+@mixin autoprefix ($prop, $value) {
+  @each $prefix in '-webkit-', '-moz-', '-ms-', '-o-', '' {
+    #{$prefix}#{$prop}: $value;
+  }
+}

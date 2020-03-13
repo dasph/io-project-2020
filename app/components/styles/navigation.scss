@@ -1,0 +1,129 @@
+/******************************************/
+/* ************* NAVIGATION ************* */
+/******************************************/
+
+@import './autoprefix';
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background: #151515;
+  max-height: 58px;
+  overflow-y: hidden;
+  @include autoprefix(transition, .2s);
+
+  &.on {
+    max-height: 255em;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  img {
+    height: 48px;
+    margin: 5px 15px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    font-size: 1.5em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  li {
+    display: inline-block;
+    align-self: center;
+    margin: 0px 10px;
+  }
+
+  a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    @include autoprefix(transition, .25s);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+
+    &.active {
+      border-bottom: 1px solid black;
+    }
+
+    &:hover {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  .nav-toogle {
+    width: 42px;
+    height: 30px;
+    margin: 14px 15px 14px 0px;
+    @include autoprefix(transform, rotate(0deg));
+    @include autoprefix(transition, .5s ease-in-out);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+
+    span {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: white;
+      opacity: 1;
+      @include autoprefix(transform, rotate(0deg));
+      @include autoprefix(transition, .25s ease-in-out);
+
+      &:nth-child(1) {
+        top: 0px;
+      }
+
+      &:nth-child(2), &:nth-child(3) {
+        top: 14px;
+      }
+
+      &:nth-child(4) {
+        top: 28px;
+      }
+    }
+  }
+
+  .nav-toogle.on span {
+    &:nth-child(1) {
+      top: 14px;
+      width: 0%;
+      left: 50%;
+    }
+
+    &:nth-child(2) {
+      @include autoprefix(transform, rotate(45deg));
+    }
+
+    &:nth-child(3) {
+      @include autoprefix(transform, rotate(-45deg));
+    }
+
+    &:nth-child(4) {
+      top: 14px;
+      width: 0%;
+      left: 50%;
+    }
+  }
+}
