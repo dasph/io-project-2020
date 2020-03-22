@@ -11,6 +11,7 @@ const domain = prod ? 'https://ioproject.herokuapp.com' : 'http://192.168.0.2'
 
 main
   .use(serve('./public'))
+  .get('/testinproduction', (ctx) => ctx.body = 'OMEGALUL')
   .get('*', (ctx) => ctx.redirect(domain))
 
 export default new Koa()
