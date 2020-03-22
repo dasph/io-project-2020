@@ -2,9 +2,57 @@
 /* ************* HOME ************* */
 /************************************/
 
+@import './autoprefix';
+
+
 .home {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  justify-content: center;
   font-size: 2em;
-  margin: 20px;
+  background-color: white;
+  background: url('images/bg.jpg') no-repeat center center fixed;
+  @include autoprefix(background-size, cover);
+}
+
+.home-welcome {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    font-size: .55em;
+  }
+
+  span {
+    font-size: 1.5em;
+    font-family: monospace;
+    @include autoprefix(user-select, none);
+
+    &:nth-of-type(1) {
+      font-size: 3em;
+      font-weight: 400;
+      font-family: var(--font-family);
+    }
+  }
+
+  input {
+    color: white;
+    font-size: .8em;
+    font-weight: 300;
+    margin-top: 40px;
+    background: black;
+    padding: 5px 25px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+
+    &:hover {
+      color: black;
+      background: transparent;
+      backdrop-filter: blur(5px);
+    }
+  }
 }

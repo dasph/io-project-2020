@@ -6,11 +6,15 @@
 
 nav {
   display: flex;
-  justify-content: space-between;
-  background: #151515;
+  justify-content: center;
+  background: white;
   max-height: 58px;
   overflow-y: hidden;
   @include autoprefix(transition, .2s);
+
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+  }
 
   &.on {
     max-height: 255em;
@@ -26,8 +30,8 @@ nav {
   }
 
   img {
-    height: 48px;
-    margin: 5px 15px;
+    width: 48px;
+    margin: 5px 40px;
   }
 
   ul {
@@ -86,7 +90,7 @@ nav {
       left: 0;
       width: 100%;
       height: 2px;
-      background: white;
+      background: black;
       opacity: 1;
       @include autoprefix(transform, rotate(0deg));
       @include autoprefix(transition, .25s ease-in-out);

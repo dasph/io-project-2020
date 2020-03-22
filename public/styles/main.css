@@ -1,6 +1,6 @@
 :root {
-  --color-primary: white;
-  --color-background: #222;
+  --color-primary: black;
+  --color-background: white;
   --color-success: #257738;
   --font-size: 1.6rem;
   --font-family: "Segoe UI",  "Helvetica Neue", Arial, sans-serif;
@@ -13,6 +13,7 @@ html {
 
 body, .app {
   display: flex;
+  flex: 1;
   flex-direction: column;
   min-height: 100%;
   color: var(--color-primary);
@@ -46,7 +47,7 @@ img {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: white;
+  background: black;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
