@@ -8,6 +8,7 @@
     "dev": "nodemon -r dotenv/config -w dist/*.js dist/ioproject.js",
     "lint": "eslint --ext .ts,.tsx .",
     "postinstall": "webpack && tsc",
+    "deploy": "git pull && npm i && pm2 restart all",
     "tsc": "tsc --watch",
     "wp": "webpack --watch"
   },
