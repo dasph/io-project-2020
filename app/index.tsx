@@ -6,3 +6,5 @@ import { App } from './App'
 const [app] = document.getElementsByClassName('app')
 
 ReactDOM.render(<App />, app)
+
+console.log('hello there')
