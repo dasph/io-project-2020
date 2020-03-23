@@ -11,7 +11,7 @@ export class Home extends Component<{}, {}> {
     return (
       <main className='home'>
         <div className='home-welcome'>
-          <span>A K A D E M I K 2</span>
+          <span>A K A D E M I K</span>
           <span>w twojej komórce</span>
           <input type='button' value='zaloguj się' onClick={this.onLogin}/>
         </div>
