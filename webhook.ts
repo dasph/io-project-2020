@@ -3,7 +3,8 @@ const { exec } = require('child_process')
 
 createServer((req, res) => {
   if (req.headers['x-github-event'] === 'push') {
-    exec('npm run deploy')
+    console.log('starting deployment')
+    exec('npm run deploy',() => console.log('deployment ended'))
     return res.end()
   }
 
