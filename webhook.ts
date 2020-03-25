@@ -57,7 +57,7 @@ const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultConte
   const head = after.slice(0, 8)
 
   run('npm run deploy')
-    .then(({ stderr, stdout }) => JSON.stringify({ stdout, stderr }))
+    .then(({ stderr, stdout }) => `${stdout}\nERRORS:\n${stderr}`)
     .then(upload).then((key) => notify(message(head, 'succeeded', key)))
     .catch((e: Error) => upload(e.message).then((key) => notify(message(head, 'failed', key))))
 
