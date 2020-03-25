@@ -53,10 +53,11 @@ const upload = (log: string): Promise<string> => send(headers.hastebin(log)).the
 const notify = (text: string): Promise<string> => send(headers.slack(`{"text":"${text}"}`))
 
 const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>): void => {
-  const head = ctx.request.body.payload.after.slice(-8)
+  const { after } = JSON.parse(ctx.request.body.payload)
+  const head = after.slice(0, 8)
 
   run('npm run deploy')
-    .then(({ stderr, stdout }) => stderr ? Promise.reject(new Error(stderr)) : Promise.resolve(stdout))
+    .then(({ stderr, stdout }) => JSON.stringify({ stdout, stderr }))
     .then(upload).then((key) => notify(message(head, 'succeeded', key)))
     .catch((e: Error) => upload(e.message).then((key) => notify(message(head, 'failed', key))))
 
