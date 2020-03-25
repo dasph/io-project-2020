@@ -8,8 +8,7 @@
     "dev": "nodemon -r dotenv/config -w dist/**/*.js",
     "lint": "eslint --ext .ts,.tsx .",
     "postinstall": "webpack && tsc",
-    "deploy2": "git pull && npm i && pm2 restart io-project",
-    "deploy": "eslint --ext .ts,.tsx .",
+    "deploy": "git pull && npm i && pm2 restart io-project",
     "tsc": "tsc --watch",
     "wp": "webpack --watch"
   },
