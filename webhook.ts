@@ -63,6 +63,8 @@ const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultConte
   ctx.body = 'OK'
 }
 
+const verify = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next) => next()
+
 new Koa()
   .use((ctx, next) => ctx.header['x-github-event'] === 'push' ? next() : ctx.throw(400))
   .use(bodyPaser())
