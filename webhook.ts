@@ -31,23 +31,41 @@ const headers = {
   })
 }
 
-function send (options: SlackRequestOptions): Promise<string>
-function send (options: HastebinRequestOptions): Promise<{ key: string }>
-function send (options: SlackRequestOptions | HastebinRequestOptions) {
-  return new Promise<IncomingMessage>((resolve, reject) => {
-    const { payload, ...headers } = options
+const verify = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next): Promise<any> => {
+  const sig = ctx.header['x-hub-signature']
+  const payload = JSON.stringify(ctx.request.body)
+  const hmac = createHmac('sha1', WEBHOOK_SECRET || '')
+  const digest = Buffer.from(`sha1=${hmac.update(payload).digest('hex')}`, 'utf8')
+  const checksum = Buffer.from(sig, 'utf8')
 
-    const req = request(headers, resolve).on('error', reject)
+  return (checksum.length === digest.length && timingSafeEqual(digest, checksum)) ? next() : ctx.throw(401)
+}
+
+const requestSend = (options: RequestOptions, payload?: string) => {
+  return new Promise<IncomingMessage>((resolve, reject) => {
+    const req = request(options, resolve).on('error', reject)
     req.write(payload)
     req.end()
-  }).then((stream) => new Promise<{ json: boolean, data: string }>((resolve, reject) => {
+  })
+}
+
+const requestDigest = (stream: IncomingMessage) => {
+  return new Promise<{ json: boolean, data: string }>((resolve, reject) => {
     const json = stream.headers['content-type'] === 'application/json'
     const data: Array<Buffer> = []
 
     stream.on('data', (chunk) => (data.push(chunk)))
     stream.on('end', () => resolve({ json, data: String(Buffer.concat(data)) }))
     stream.on('error', reject)
-  })).then(({ json, data }) => json ? JSON.parse(data) : data)
+  })
+}
+
+function send (options: SlackRequestOptions): Promise<string>
+function send (options: HastebinRequestOptions): Promise<{ key: string }>
+function send (options: SlackRequestOptions | HastebinRequestOptions) {
+  const { payload, ...headers } = options
+
+  return requestSend(headers, payload).then(requestDigest).then(({ json, data }) => json ? JSON.parse(data) : data)
 }
 
 const upload = (log: string): Promise<string> => send(headers.hastebin(log)).then(({ key }) => key)
@@ -61,16 +79,6 @@ const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultConte
     .catch((e: Error) => upload(e.message).then((key) => notify(message(head, 'failed', key))))
 
   ctx.body = 'OK'
-}
-
-const verify = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next): Promise<any> => {
-  const sig = ctx.header['x-hub-signature']
-  const payload = JSON.stringify(ctx.request.body)
-  const hmac = createHmac('sha1', WEBHOOK_SECRET || '')
-  const digest = Buffer.from(`sha1=${hmac.update(payload).digest('hex')}`, 'utf8')
-  const checksum = Buffer.from(sig, 'utf8')
-
-  return (checksum.length === digest.length && timingSafeEqual(digest, checksum)) ? next() : ctx.throw(401)
 }
 
 new Koa()
