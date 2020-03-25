@@ -11,7 +11,7 @@ type HastebinRequestOptions = RequestOptions & { hostname: 'hastebin.com', paylo
 const { SLACK_NOTIFIER } = process.env
 
 const run = promisify(exec)
-const message = (head: string, state: string, key: string) => `Head \`${head}\`: deployment *${state}*\nLogs can be found <https://hastebin.com/${key}|here>`
+const message = (head: string, state: string, key: string) => `> Head \`${head}\`: deployment *${state}*\nLogs can be found <https://hastebin.com/${key}|here>`
 
 const headers = {
   slack: (payload: string): SlackRequestOptions => ({
