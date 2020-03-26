@@ -21,6 +21,14 @@
   flex-direction: column;
   align-self: center;
   align-items: center;
+  overflow-y: hidden;
+  max-height: 500px;
+	transition: max-height .5s cubic-bezier(0, 1, 0.5, 1);
+
+  &.closed {
+    opacity: 0;
+    max-height: 0;
+  }
 
   @media screen and (max-width: 768px) {
     font-size: .55em;

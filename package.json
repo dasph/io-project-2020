@@ -2,7 +2,7 @@
   "name": "io-project-2020",
   "version": "0.0.0",
   "description": "IO Project 2020",
-  "main": "dist/webhook",
+  "main": "dist/ioproject",
   "scripts": {
     "start": "node dist/ioproject",
     "dev": "nodemon -r dotenv/config -w dist/**/*.js",

@@ -1,0 +1,98 @@
+/*************************************/
+/* ************* LOGIN ************* */
+/*************************************/
+
+.login-window {
+  display: flex;
+  flex-direction: column;
+  background: #ffffffba;
+  padding: 25px 40px;
+  box-shadow: 5px 10px 15px #000000a6;
+
+  @media screen and (min-width: 768px) {
+    width: 512px;
+    align-self: center;
+
+  }
+
+  .labels {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    span {
+      margin: 2px;
+      font-size: 0.5em;
+
+      &:first-of-type {
+        font-size: 1.8em;
+      }
+    }
+  }
+
+  .input-field {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    margin: 5px 0px;
+
+    input {
+      height: 100%;
+      place-self: flex-end;
+      padding: 5px 0px;
+
+      &[type='text'], &[type='password'] {
+        flex: 1;
+        font-size: 0.7em;
+        font-weight: 300;
+        background: transparent;
+        border: none;
+        transition: font-size 0.1s ease-in;
+
+        &:focus {
+          font-size: 0.8em;
+          place-self: center;
+          outline: none;
+        }
+      }
+    }
+
+    img {
+      padding: 5px;
+      height: 42px;
+    }
+  }
+
+  > span, > a {
+    margin: 5px 0px;
+    font-size: .5em;
+
+    &:first-of-type {
+      cursor: pointer;
+    }
+
+    a {
+      color: #3f51b5;
+    }
+  }
+
+  input {
+    &[type='button'] {
+      color: white;
+      font-size: .8em;
+      font-weight: 300;
+      margin-top: 20px;
+      background: black;
+      padding: 5px 0px;
+      border: 1px solid black;
+      cursor: pointer;
+      transition: .1s ease-in-out;
+
+      &:hover {
+        color: black;
+        background: transparent;
+        backdrop-filter: blur(5px);
+      }
+    }
+  }
+}
