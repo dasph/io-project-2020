@@ -2,13 +2,14 @@
 /* ************* LOGIN ************* */
 /*************************************/
 
-.login-page {
+.login-component {
   display: flex;
   flex-direction: column;
   background: #ffffffba;
   padding: 25px 40px;
-  box-shadow: 0px 8px 0px black;
+  box-shadow: 0px 8px 0px #000000ba;
   font-size: 0.8em;
+  font-weight: 400;
   animation: fade-in .5s cubic-bezier(0, 1, 0.5, 1);
 
   @keyframes fade-in {

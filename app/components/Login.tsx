@@ -6,7 +6,7 @@ import './styles/login.scss'
 export class Login extends Component<{}, {}> {
   render () {
     return (
-      <div className='login-page'>
+      <div className='login-component'>
         <div className='labels'>
           <span>Login</span>
           <span>you can use your USOS credentials</span>
