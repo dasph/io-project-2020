@@ -10,7 +10,7 @@ nav {
   background: white;
   max-height: 58px;
   overflow-y: hidden;
-  @include autoprefix(transition, .2s);
+  transition: .2s;
 
   @media screen and (max-width: 768px) {
     justify-content: space-between;
@@ -60,7 +60,7 @@ nav {
       display: block;
       padding: 15px;
       border-bottom: 1px solid #ccc;
-      @include autoprefix(transition, .25s);
+      transition: .25s;
       -webkit-tap-highlight-color: transparent;
       cursor: pointer;
 
@@ -79,7 +79,7 @@ nav {
     height: 30px;
     margin: 14px 15px 14px 0px;
     @include autoprefix(transform, rotate(0deg));
-    @include autoprefix(transition, .5s ease-in-out);
+    transition: .5s ease-in-out;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
 
@@ -96,7 +96,7 @@ nav {
       background: black;
       opacity: 1;
       @include autoprefix(transform, rotate(0deg));
-      @include autoprefix(transition, .25s ease-in-out);
+      transition: .25s ease-in-out;
 
       &:nth-child(1) {
         top: 0px;

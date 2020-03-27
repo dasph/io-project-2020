@@ -1,10 +1,10 @@
-/*************************************/
-/* ************* LOGIN ************* */
-/*************************************/
+/***************************************/
+/* ************* RECOVER ************* */
+/***************************************/
 
 @import './autoprefix';
 
-.login-component {
+.recover-component {
   display: flex;
   flex-direction: column;
   background: #ffffffba;
@@ -42,7 +42,7 @@
       font-size: 0.5em;
 
       &:first-of-type {
-        font-size: 1.8em;
+        font-size: 1.5em;
         border-left: 3px solid black;
         padding-left: 37px;
         @include autoprefix(transform, translateX(-42px));
@@ -70,7 +70,7 @@
         place-self: flex-end;
       }
 
-      &[type='text'], &[type='password'] {
+      &[type='text'] {
         flex: 1;
         font-size: 0.7em;
         font-weight: 300;
@@ -127,9 +127,5 @@
   > span {
     margin: 5px 0px;
     font-size: .5em;
-  }
-
-  .signup a {
-    text-decoration: underline;
   }
 }

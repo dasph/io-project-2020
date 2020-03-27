@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
-import './styles/login.scss'
+import './styles/signup.scss'
 
-export class Login extends Component<{}, {}> {
+export class Signup extends Component<{}, {}> {
   render () {
     return (
-      <div className='login-component'>
+      <div className='signup-component'>
         <div className='labels'>
-          <span>Login</span>
-          <span>you can use your USOS credentials</span>
+          <span>Sign Up</span>
+          <span>please enter your credentials</span>
         </div>
         <div className='input-field email'>
           <div>
@@ -29,9 +28,16 @@ export class Login extends Component<{}, {}> {
             />
           </div>
         </div>
-        <span className='recover'><Link to='/recover'>{'Forgot password >'}</Link></span>
-        <input type='button' value='Login' />
-        <span className='signup'>{'Don\'t have an account? '}<Link to='/signup'>Sign up here</Link></span>
+        <div className='input-field password'>
+          <div>
+            <img src='images/icon-lock.svg' />
+            <input
+              type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
+              placeholder='confirm password' maxLength={32}
+            />
+          </div>
+        </div>
+        <input type='button' value='Sign Up' />
       </div>
     )
   }

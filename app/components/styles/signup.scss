@@ -1,10 +1,10 @@
-/*************************************/
-/* ************* LOGIN ************* */
-/*************************************/
+/**************************************/
+/* ************* SIGNUP ************* */
+/**************************************/
 
 @import './autoprefix';
 
-.login-component {
+.signup-component {
   display: flex;
   flex-direction: column;
   background: #ffffffba;
@@ -127,9 +127,5 @@
   > span {
     margin: 5px 0px;
     font-size: .5em;
-  }
-
-  .signup a {
-    text-decoration: underline;
   }
 }
