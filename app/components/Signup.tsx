@@ -8,15 +8,15 @@ export class Signup extends Component<{}, {}> {
     return (
       <div className='signup-component'>
         <div className='labels'>
-          <span>Sign Up</span>
-          <span>please enter your credentials</span>
+          <span>Rejestracja</span>
+          <span>wypełnij poniższe pola</span>
         </div>
         <div className='input-field email'>
           <div>
             <img src='images/icon-mail.svg' />
             <input
               type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='email address' maxLength={32}
+              placeholder='adres e-mail' maxLength={32}
             />
           </div>
         </div>
@@ -25,7 +25,7 @@ export class Signup extends Component<{}, {}> {
             <img src='images/icon-lock.svg' />
             <input
               type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='password' maxLength={32}
+              placeholder='hasło' maxLength={32}
             />
           </div>
         </div>
@@ -34,12 +34,12 @@ export class Signup extends Component<{}, {}> {
             <img src='images/icon-lock.svg' />
             <input
               type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='confirm password' maxLength={32}
+              placeholder='Powtórz hasło' maxLength={32}
             />
           </div>
         </div>
-        <span><Link to='/login'>{'Have an account?'}</Link></span>
-        <input type='button' value='Sign Up' />
+        <span><Link to='/login'>{'Masz konto?'}</Link></span>
+        <input type='button' value='Zarejestruj' />
       </div>
     )
   }

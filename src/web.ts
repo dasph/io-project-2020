@@ -7,7 +7,7 @@ const main = new Router()
 
 main
   .use(serve('./public'))
-  .get(['/login', '/signup', '/recover', '/pricing', '/about'], (ctx) => send(ctx, 'public/index.html'))
+  .get(['/login', '/signup', '/recover', '/pricing', '/about', '/contact'], (ctx) => send(ctx, 'public/index.html'))
   .get('*', (ctx) => ctx.redirect('/'))
 
 export default new Koa()

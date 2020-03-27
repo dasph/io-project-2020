@@ -32,8 +32,8 @@ export class Navigation extends Component<{}, { toggle: Boolean }> {
         <div>
           <Link to='/'><img src='images/logo.png' /></Link>
           <ul onClick={() => this.onLink()}>
-            <li><Link to='/'>Home</Link></li>
             <li><Link to='/pricing'>Cennik</Link></li>
+            <li><Link to='/contact'>Kontakt</Link></li>
             <li><Link to='/about'>O Nas</Link></li>
           </ul>
         </div>
