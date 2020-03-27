@@ -8,15 +8,15 @@ export class Login extends Component<{}, {}> {
     return (
       <div className='login-component'>
         <div className='labels'>
-          <span>Login</span>
-          <span>you can use your USOS credentials</span>
+          <span>Logowanie</span>
+          <span>logujesz się za pomocą konta</span>
         </div>
         <div className='input-field email'>
           <div>
             <img src='images/icon-mail.svg' />
             <input
               type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='email address' maxLength={32}
+              placeholder='adres e-mail' maxLength={32}
             />
           </div>
         </div>
@@ -25,13 +25,13 @@ export class Login extends Component<{}, {}> {
             <img src='images/icon-lock.svg' />
             <input
               type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='password' maxLength={32}
+              placeholder='hasło' maxLength={32}
             />
           </div>
         </div>
-        <span className='recover'><Link to='/recover'>{'Forgot password >'}</Link></span>
-        <input type='button' value='Login' />
-        <span className='signup'>{'Don\'t have an account? '}<Link to='/signup'>Sign up here</Link></span>
+        <span className='recover'><Link to='/recover'>{'Odzyskaj Hasło >'}</Link></span>
+        <input type='button' value='Zaloguj' />
+        <span className='signup'>{'Nie masz konta? '}<Link to='/signup'>Zarejestruj się</Link></span>
       </div>
     )
   }

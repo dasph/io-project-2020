@@ -9,7 +9,7 @@ export class Welcome extends Component<{}, {}> {
       <div className='welcome-component'>
         <span>A K A D E M I K</span>
         <span>w twojej komórce</span>
-        <Link to='/login'><input type='button' value='zaloguj się'/></Link>
+        <Link to='/login'><input type='button' value='Zaloguj'/></Link>
       </div>
     )
   }
