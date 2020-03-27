@@ -10,5 +10,5 @@ main
   .get(['/login', '/signup', '/recover', '/pricing', '/about', '/contact'], (ctx) => send(ctx, 'public/index.html'))
   .get('*', (ctx) => ctx.redirect('/'))
 
-export const App = new Koa().use(main.routes())
-export const Http = new Koa().use((ctx) => ctx.redirect(`https://${ctx.request.host}`))
+export default new Koa()
+  .use(main.routes())
