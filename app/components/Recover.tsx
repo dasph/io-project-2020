@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import './styles/recover.scss'
 
@@ -19,6 +20,7 @@ export class Recover extends Component<{}, {}> {
             />
           </div>
         </div>
+        <span><Link to='/login'>{'Go back'}</Link></span>
         <input type='button' value='Confirm' />
       </div>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import './styles/signup.scss'
 
@@ -37,6 +38,7 @@ export class Signup extends Component<{}, {}> {
             />
           </div>
         </div>
+        <span><Link to='/login'>{'Have an account?'}</Link></span>
         <input type='button' value='Sign Up' />
       </div>
     )
