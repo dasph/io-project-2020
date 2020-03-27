@@ -2,15 +2,5 @@
 /* ************* ABOUT ************* */
 /*************************************/
 
-@import './autoprefix';
-
-.about {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-size: 2em;
-
-  background-color: white;
-  background: url('images/bg.jpg') no-repeat center center fixed;
-  @include autoprefix(background-size, cover);
+.about-page {
 }

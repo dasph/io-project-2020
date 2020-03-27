@@ -2,17 +2,30 @@
 /* ************* LOGIN ************* */
 /*************************************/
 
-.login-window {
+.login-page {
   display: flex;
   flex-direction: column;
   background: #ffffffba;
   padding: 25px 40px;
-  box-shadow: 5px 10px 15px #000000a6;
+  box-shadow: 0px 8px 0px black;
+  font-size: 0.8em;
+  animation: fade-in .5s cubic-bezier(0, 1, 0.5, 1);
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 
   @media screen and (min-width: 768px) {
+    font-size: 1em;
     width: 512px;
     align-self: center;
-
   }
 
   .labels {
@@ -32,14 +45,23 @@
 
   .input-field {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background: white;
     margin: 5px 0px;
 
+    > div {
+      display: flex;
+      flex-direction: row;
+    }
+
     input {
       height: 100%;
-      place-self: flex-end;
+      place-self: center;
       padding: 5px 0px;
+
+      &:placeholder-shown {
+        place-self: flex-end;
+      }
 
       &[type='text'], &[type='password'] {
         flex: 1;
@@ -58,41 +80,49 @@
     }
 
     img {
-      padding: 5px;
       height: 42px;
+      padding: 5px;
+    }
+
+    &::after {
+      content: '';
+      position: relative;
+      border-bottom: 1px solid black;
+      width: 0px;
+      left: 50%;
+      transition: .2s ease-in-out;
+    }
+
+    &:focus-within::after {
+      width: 100%;
+      left: 0%;
     }
   }
 
-  > span, > a {
+  input[type='button'] {
+    color: white;
+    font-size: .8em;
+    font-weight: 300;
+    margin-top: 20px;
+    background: black;
+    padding: 5px 0px;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: .1s ease-in-out;
+
+    &:hover {
+      color: black;
+      background: transparent;
+      backdrop-filter: blur(5px);
+    }
+  }
+
+  > span {
     margin: 5px 0px;
     font-size: .5em;
-
-    &:first-of-type {
-      cursor: pointer;
-    }
-
-    a {
-      color: #3f51b5;
-    }
   }
 
-  input {
-    &[type='button'] {
-      color: white;
-      font-size: .8em;
-      font-weight: 300;
-      margin-top: 20px;
-      background: black;
-      padding: 5px 0px;
-      border: 1px solid black;
-      cursor: pointer;
-      transition: .1s ease-in-out;
-
-      &:hover {
-        color: black;
-        background: transparent;
-        backdrop-filter: blur(5px);
-      }
-    }
+  .signup a {
+    text-decoration: underline;
   }
 }

@@ -24,6 +24,10 @@ nav {
     display: flex;
     flex-direction: row;
 
+    > a {
+      margin: 5px 40px;
+    }
+
     @media screen and (max-width: 768px) {
       flex-direction: column;
     }
@@ -31,7 +35,6 @@ nav {
 
   img {
     width: 48px;
-    margin: 5px 40px;
   }
 
   ul {
@@ -52,22 +55,22 @@ nav {
     display: inline-block;
     align-self: center;
     margin: 0px 10px;
-  }
 
-  a {
-    display: block;
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
-    @include autoprefix(transition, .25s);
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
+    a {
+      display: block;
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+      @include autoprefix(transition, .25s);
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
 
-    &.active {
-      border-bottom: 1px solid black;
-    }
+      &.active {
+        border-bottom: 1px solid black;
+      }
 
-    &:hover {
-      border-bottom: 1px solid black;
+      &:hover {
+        border-bottom: 1px solid black;
+      }
     }
   }
 

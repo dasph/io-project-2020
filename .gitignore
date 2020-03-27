@@ -3,3 +3,4 @@ dist/*
 public/*bundle.js
 package-lock.json
 .env
+.todo

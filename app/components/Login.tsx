@@ -6,28 +6,32 @@ import './styles/login.scss'
 export class Login extends Component<{}, {}> {
   render () {
     return (
-      <div className='login-window'>
+      <div className='login-page'>
         <div className='labels'>
           <span>Login</span>
           <span>you can use your USOS credentials</span>
         </div>
         <div className='input-field email'>
-          <img src='images/icon-mail.svg' />
-          <input
-            type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-            placeholder='email address' maxLength={32}
-          />
+          <div>
+            <img src='images/icon-mail.svg' />
+            <input
+              type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
+              placeholder='email address' maxLength={32}
+            />
+          </div>
         </div>
         <div className='input-field password'>
-          <img src='images/icon-lock.svg' />
-          <input
-            type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-            placeholder='password' maxLength={32}
-          />
+          <div>
+            <img src='images/icon-lock.svg' />
+            <input
+              type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
+              placeholder='password' maxLength={32}
+            />
+          </div>
         </div>
-        <Link to='/recover'>{'Forgot password >'}</Link>
+        <span className='recover'><Link to='/recover'>{'Forgot password >'}</Link></span>
         <input type='button' value='Login' />
-        <span>{'Don\'t have an account? '}<Link to='/register'>Sign up here</Link></span>
+        <span className='signup'>{'Don\'t have an account? '}<Link to='/register'>Sign up here</Link></span>
       </div>
     )
   }
