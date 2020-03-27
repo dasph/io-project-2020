@@ -10,5 +10,5 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["ioproject.ts", "webhook.ts"]
+  "include": ["ioproject.ts", "webhook.ts", "redirect.ts"]
 }

@@ -21,7 +21,7 @@ export class Recover extends Component<{}, {}> {
           </div>
         </div>
         <span><Link to='/login'>{'wróć do logowania'}</Link></span>
-        <input type='button' value='Confirm' />
+        <input type='button' value='Potwierdź' />
       </div>
     )
   }
