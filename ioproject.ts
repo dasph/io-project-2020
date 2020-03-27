@@ -1,5 +1,15 @@
-import Web from './src/web'
+import { createServer } from 'https'
+import { readFileSync } from 'fs'
+import { App, Http } from './src/web'
 
-console.log('Ξ Launching @io-project-2020')
+const { CERT_DIR } = process.env
 
-Web.listen(80)
+const opts = {
+  key: readFileSync(`${CERT_DIR}/private.key`),
+  cert: readFileSync(`${CERT_DIR}/certificate.crt`)
+}
+
+createServer(opts, App.callback()).listen(443)
+
+App.listen(443, () => console.log('Ξ Binded app @443'))
+Http.listen(80, () => console.log('Ξ Binded app @80'))
