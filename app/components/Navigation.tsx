@@ -30,7 +30,7 @@ export class Navigation extends Component<{}, { toggle: Boolean }> {
     return (
       <nav className={`${toggle ? 'on' : ''}`}>
         <div>
-          <Link to='/'><img src='images/logo.png' /></Link>
+          <Link to='/'><img src='images/logo.svg' /></Link>
           <ul onClick={() => this.onLink()}>
             <li><Link to='/pricing'>Cennik</Link></li>
             <li><Link to='/contact'>Kontakt</Link></li>
