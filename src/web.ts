@@ -8,7 +8,7 @@ const { NODE_ENV, DOMAIN } = process.env
 const prod = NODE_ENV === 'production'
 
 const redir = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next) => {
-  return (!prod || ctx.request.host === DOMAIN) ? next() : ctx.redirect(`https://${DOMAIN}`)
+  return (!prod || ctx.request.host.indexOf(DOMAIN || '') !== -1) ? next() : ctx.redirect(`https://${DOMAIN}`)
 }
 
 const main = new Router()
