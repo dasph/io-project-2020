@@ -5,7 +5,6 @@
 2. create a *.env* file with the following secret variables:
     ```text
     NODE_ENV=development
-    PORT=80
     ```
 3. `npm install`
 
