@@ -3,10 +3,12 @@ import * as send from 'koa-send'
 import * as serve from 'koa-static'
 import * as Router from 'koa-router'
 
-const { DOMAIN } = process.env
+const { NODE_ENV, DOMAIN } = process.env
+
+const prod = NODE_ENV === 'production'
 
 const redir = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next) => {
-  return ctx.request.host === DOMAIN ? next() : ctx.redirect(`https://${DOMAIN}`)
+  return (!prod || ctx.request.host === DOMAIN) ? next() : ctx.redirect(`https://${DOMAIN}`)
 }
 
 const main = new Router()

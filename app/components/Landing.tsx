@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { Navigation } from './Navigation'
 import { Welcome } from './Welcome'
 import { Pricing } from './Pricing'
+import { Contact } from './Contact'
 import { About } from './About'
 import { Login } from './Login'
 import { Signup } from './Signup'
@@ -22,6 +23,7 @@ export class Landing extends Component<{}, {}> {
           <Route path='/signup' exact component={Signup} />
           <Route path='/recover' exact component={Recover} />
           <Route path='/pricing' exact component={Pricing} />
+          <Route path='/contact' exact component={Contact} />
           <Route path='/about' exact component={About} />
         </main>
       </BrowserRouter>

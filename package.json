@@ -19,7 +19,9 @@
     "url": "git+https://github.com/daspharion/io-project-2020.git"
   },
   "author": "daspharion",
-  "contributors": ["kubasny12"],
+  "contributors": [
+    "kubasny12"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/daspharion/io-project-2020/issues"
