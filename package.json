@@ -9,15 +9,17 @@
     "lint": "eslint --ext .ts,.tsx .",
     "postinstall": "webpack && tsc",
     "deploy": "git pull && npm i && pm2 restart io-project",
-    "tsc": "tsc --watch",
-    "wp": "webpack --watch"
+    "tsc": "tsc",
+    "wp": "webpack",
+    "tsc:w": "tsc --watch",
+    "wp:w": "webpack --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/daspharion/io-project-2020.git"
   },
   "author": "daspharion",
-  "contributors": [],
+  "contributors": ["kubasny12"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/daspharion/io-project-2020/issues"

@@ -1,4 +1,4 @@
-import * as Koa from 'koa'
+import * as Koa from './src/koa'
 import { promisify } from 'util'
 import { exec } from 'child_process'
 import { IncomingMessage } from 'http'
