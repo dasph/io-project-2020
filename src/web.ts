@@ -1,4 +1,4 @@
-import * as Koa from './koa'
+import * as Koa from 'koa'
 import * as send from 'koa-send'
 import * as serve from 'koa-static'
 import * as Router from 'koa-router'
@@ -7,7 +7,7 @@ const { NODE_ENV, DOMAIN } = process.env
 
 const prod = NODE_ENV === 'production'
 
-const redir = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next) => {
+const redir: Koa.Middleware = (ctx, next) => {
   return (!prod || ctx.request.host.indexOf(DOMAIN || '') !== -1) ? next() : ctx.redirect(`https://${DOMAIN}`)
 }
 
@@ -21,3 +21,4 @@ main
 export default new Koa()
   .use(redir)
   .use(main.routes())
+  .callback()

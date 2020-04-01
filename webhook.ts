@@ -1,10 +1,11 @@
-import * as Koa from './src/koa'
+import * as Koa from 'koa'
 import { promisify } from 'util'
 import { exec } from 'child_process'
-import { IncomingMessage } from 'http'
+import { IncomingMessage } from 'http' // eslint-disable-line
 import * as bodyPaser from 'koa-bodyparser'
-import { request, RequestOptions } from 'https'
+import { request, RequestOptions } from 'https' // eslint-disable-line
 import { createHmac, timingSafeEqual } from 'crypto'
+import { createSecureServer } from './src/servers'
 
 type SlackRequestOptions = RequestOptions & { hostname: 'hooks.slack.com', payload: string }
 type HastebinRequestOptions = RequestOptions & { hostname: 'hastebin.com', payload: string }
@@ -31,7 +32,7 @@ const headers = {
   })
 }
 
-const verify = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>, next: Koa.Next): Promise<any> => {
+const verify: Koa.Middleware = (ctx, next) => {
   const sig = ctx.header['x-hub-signature']
   const payload = JSON.stringify(ctx.request.body)
   const hmac = createHmac('sha1', WEBHOOK_SECRET || '')
@@ -68,10 +69,10 @@ function send (options: SlackRequestOptions | HastebinRequestOptions) {
   return requestSend(headers, payload).then(requestDigest).then(({ json, data }) => json ? JSON.parse(data) : data)
 }
 
-const upload = (log: string): Promise<string> => send(headers.hastebin(log)).then(({ key }) => key)
-const notify = (text: string): Promise<string> => send(headers.slack(`{"text":"${text}"}`))
+const upload = (log: string) => send(headers.hastebin(log)).then(({ key }) => key)
+const notify = (text: string) => send(headers.slack(`{"text":"${text}"}`))
 
-const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultContext>): void => {
+const deploy: Koa.Middleware = (ctx) => {
   const head = ctx.request.body.after.slice(0, 8)
 
   run('npm run deploy')
@@ -81,10 +82,12 @@ const deploy = (ctx: Koa.ParameterizedContext<Koa.DefaultState, Koa.DefaultConte
   ctx.body = 'OK'
 }
 
-new Koa()
+const app = new Koa()
   .use((ctx, next) => ctx.header['x-github-event'] === 'push' ? next() : ctx.throw(400))
   .use(bodyPaser())
   .use((ctx, next) => ctx.request.body.ref === 'refs/heads/master' ? next() : (ctx.status = 204))
   .use(verify)
   .use(deploy)
-  .listen(8080)
+  .callback()
+
+createSecureServer(app).listen(8080)
