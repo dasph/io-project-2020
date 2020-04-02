@@ -3,9 +3,9 @@ import { readFileSync } from 'fs'
 
 const { CERT_DIR } = process.env
 
-function createSecureServer (callback?: Parameters<typeof http2.createSecureServer>[1]) {
-  const options = ['ca', 'key', 'cert'].reduce((a, c) => ({ [c]: readFileSync(`${CERT_DIR}/${c}.pem`), ...a }), {})
-  return http2.createSecureServer(options, callback)
+const createSecureServer = (callback?: Parameters<typeof http2.createSecureServer>[1], opts?: http2.SecureServerOptions) => {
+  const certs = ['ca', 'key', 'cert'].reduce((a, c) => ({ [c]: readFileSync(`${CERT_DIR}/${c}.pem`), ...a }), {})
+  return http2.createSecureServer({ ...opts, ...certs }, callback)
 }
 
 export { createSecureServer }

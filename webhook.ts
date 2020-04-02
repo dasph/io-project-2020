@@ -90,4 +90,4 @@ const app = new Koa()
   .use(deploy)
   .callback()
 
-createSecureServer(app).listen(8080)
+createSecureServer(app, { allowHTTP1: true }).listen(8080)
