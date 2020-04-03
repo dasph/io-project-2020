@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { InputText } from './extra/InputText'
 
 import './styles/recover.scss'
 
@@ -11,17 +12,11 @@ export class Recover extends Component<{}, {}> {
           <span>Odzyskiwanie hasła</span>
           <span>jeśli podany e-mail istnieje, otrzymasz wiadomość z instrukcją</span>
         </div>
-        <div className='input-field email'>
-          <div>
-            <img src='images/icon-mail.svg' />
-            <input
-              type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='adres e-mail' maxLength={32}
-            />
-          </div>
-        </div>
-        <span><Link to='/login'>{'wróć do logowania'}</Link></span>
-        <input type='button' value='Confirm' />
+
+        <InputText icon='mail' placeholder='adres e-mail' email required />
+
+        <span><Link to='/login'>wróć do logowania</Link></span>
+        <input type='button' value='Potwierdź' />
       </div>
     )
   }

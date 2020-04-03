@@ -1,0 +1,83 @@
+/******************************************/
+/* ************* INPUT TEXT ************* */
+/******************************************/
+
+.input-text {
+  font-size: var(--font-size);
+  font-family: var(----font-family);
+  color: var(--color-primary);
+  background: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    font-size: 2em;
+
+    > div {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      position: relative;
+
+      &::after {
+        content: attr(data-error);
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        font-size: .4em;
+        color: var(--color-error);
+        transition: .2s ease-in-out;
+        opacity: 1;
+      }
+
+      &:focus-within::after {
+        left: 50%;
+        opacity: 0;
+      }
+    }
+  }
+
+  input {
+    flex: 1;
+    font-size: 0.7em;
+    font-weight: 300;
+    background: transparent;
+    transition: font-size 0.1s ease-in;
+    height: 100%;
+    place-self: center;
+    padding: 5px 0px;
+    border: none;
+
+    &:placeholder-shown {
+      place-self: flex-end;
+    }
+
+    &:focus {
+      font-size: 0.8em;
+      place-self: center;
+      outline: none;
+    }
+  }
+
+  img {
+    height: 42px;
+    padding: 5px;
+  }
+
+  &::after {
+    content: '';
+    position: relative;
+    border-bottom: 1px solid black;
+    width: 0px;
+    left: 50%;
+    transition: .2s ease-in-out;
+  }
+
+  &:focus-within::after {
+    width: 100%;
+    left: 0%;
+  }
+}

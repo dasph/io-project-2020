@@ -2,6 +2,7 @@
   --color-primary: black;
   --color-background: white;
   --color-success: #257738;
+  --color-error: #fc3d3d;
   --font-size: 1.6rem;
   --font-family: "Quicksand", "Segoe UI",  "Helvetica Neue", Arial, sans-serif;
 }

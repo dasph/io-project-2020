@@ -50,62 +50,6 @@
     }
   }
 
-  .input-field {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    margin: 5px 0px;
-
-    > div {
-      display: flex;
-      flex-direction: row;
-    }
-
-    input {
-      height: 100%;
-      place-self: center;
-      padding: 5px 0px;
-
-      &:placeholder-shown {
-        place-self: flex-end;
-      }
-
-      &[type='text'], &[type='password'] {
-        flex: 1;
-        font-size: 0.7em;
-        font-weight: 300;
-        background: transparent;
-        border: none;
-        transition: font-size 0.1s ease-in;
-
-        &:focus {
-          font-size: 0.8em;
-          place-self: center;
-          outline: none;
-        }
-      }
-    }
-
-    img {
-      height: 42px;
-      padding: 5px;
-    }
-
-    &::after {
-      content: '';
-      position: relative;
-      border-bottom: 1px solid black;
-      width: 0px;
-      left: 50%;
-      transition: .2s ease-in-out;
-    }
-
-    &:focus-within::after {
-      width: 100%;
-      left: 0%;
-    }
-  }
-
   input[type='button'] {
     color: white;
     font-size: .8em;

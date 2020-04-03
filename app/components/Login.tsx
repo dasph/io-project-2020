@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { InputText } from './extra/InputText'
 
 import './styles/login.scss'
 
@@ -11,27 +12,13 @@ export class Login extends Component<{}, {}> {
           <span>Logowanie</span>
           <span>logujesz się za pomocą konta</span>
         </div>
-        <div className='input-field email'>
-          <div>
-            <img src='images/icon-mail.svg' />
-            <input
-              type='text' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='adres e-mail' maxLength={32}
-            />
-          </div>
-        </div>
-        <div className='input-field password'>
-          <div>
-            <img src='images/icon-lock.svg' />
-            <input
-              type='password' autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false'
-              placeholder='hasło' maxLength={32}
-            />
-          </div>
-        </div>
+
+        <InputText icon='mail' placeholder='adres e-mail' email required />
+        <InputText icon='lock' placeholder='hasło' password required />
+
         <span className='recover'><Link to='/recover'>{'Odzyskaj Hasło >'}</Link></span>
         <input type='button' value='Zaloguj' />
-        <span className='signup'>{'Nie masz konta? '}<Link to='/signup'>Zarejestruj się</Link></span>
+        <span className='signup'>Nie masz konta? <Link to='/signup'>Zarejestruj się</Link></span>
       </div>
     )
   }
