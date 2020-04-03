@@ -6,8 +6,8 @@ import './styles/signup.scss'
 
 export class Signup extends Component<{}, {}> {
   inputs: {
-    login: React.RefObject<InputText>
-    pass: React.RefObject<InputText>
+    email: React.RefObject<InputText>,
+    pass: React.RefObject<InputText>,
     pass2: React.RefObject<InputText>
   }
 
@@ -15,7 +15,7 @@ export class Signup extends Component<{}, {}> {
     super(props)
 
     this.inputs = {
-      login: React.createRef(),
+      email: React.createRef(),
       pass: React.createRef(),
       pass2: React.createRef()
     }
@@ -24,13 +24,17 @@ export class Signup extends Component<{}, {}> {
   }
 
   onSubmit () {
-    Object.values(this.inputs).forEach((input) => {
-      if (input.current.state.error) return input.current.focus()
+    const error = Object.values(this.inputs).every(({ current }) => {
+      const { value, error } = current.state
+      return value && !error ? true : current.focus()
     })
+
+    if (!error) return
+    console.log('git')
   }
 
   render () {
-    const { login, pass, pass2 } = this.inputs
+    const { email, pass, pass2 } = this.inputs
 
     return (
       <div className='signup-component'>
@@ -39,7 +43,7 @@ export class Signup extends Component<{}, {}> {
           <span>wypełnij poniższe pola</span>
         </div>
 
-        <InputText icon='mail' placeholder='adres e-mail' email required ref={login} />
+        <InputText icon='mail' placeholder='adres e-mail' email required ref={email} />
         <InputText icon='lock' placeholder='hasło' password required ref={pass} />
         <InputText icon='lock' placeholder='powtórz hasło' password required ref={pass2} confirm={pass} />
 
