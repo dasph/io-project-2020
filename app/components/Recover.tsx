@@ -17,7 +17,7 @@ export class Recover extends Component<{}, {}> {
 
   onSubmit () {
     const { value, error } = this.email.current.state
-    if(!value || error) return this.email.current.focus()
+    if (!value || error) return this.email.current.focus()
 
     console.log('git')
   }
