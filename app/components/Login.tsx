@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { InputText } from './extra/InputText'
+import { Button } from './extra/Button'
 
 import './styles/login.scss'
 
@@ -45,7 +46,7 @@ export class Login extends Component<{}, {}> {
         <InputText icon='lock' placeholder='hasło' password required ref={pass} />
 
         <span className='recover'><Link to='/recover'>{'Odzyskaj Hasło >'}</Link></span>
-        <input type='button' value='Zaloguj' onClick={this.onSubmit} />
+        <Button value='Zaloguj' onClick={this.onSubmit} />
         <span className='signup'>Nie masz konta? <Link to='/signup'>Zarejestruj się</Link></span>
       </div>
     )

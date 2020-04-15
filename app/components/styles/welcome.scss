@@ -26,21 +26,9 @@
     }
   }
 
-  input {
-    color: white;
+  button {
     font-size: .8em;
-    font-weight: 300;
     margin-top: 40px;
-    background: black;
     padding: 5px 25px;
-    border: 1px solid black;
-    cursor: pointer;
-    transition: .1s ease-in-out;
-
-    &:hover {
-      color: black;
-      background: transparent;
-      @include autoprefix(backdrop-filter, blur(5px));
-    }
   }
 }

@@ -1,0 +1,42 @@
+/**************************************/
+/* ************* BUTTON ************* */
+/**************************************/
+
+@import './../../styles/autoprefix';
+
+.btn {
+  font-size: var(--font-size);
+  font-family: var(----font-family);
+  position: relative;
+  color: white;
+  font-weight: 300;
+  padding: 5px 0px;
+  background: black;
+  border: 1px solid black;
+  cursor: pointer;
+  display: inline-block;
+  transition: .3s cubic-bezier(0, 1, 0.5, 1);
+
+  &.type-0 {
+    &:hover {
+      background: #101010;
+    }
+  }
+
+  &.type-1 {
+    transition: .1s ease-in-out;
+
+    &:hover {
+      color: black;
+      background: transparent;
+      @include autoprefix(backdrop-filter, blur(5px));
+    }
+  }
+
+  &.type-disabled {
+    color: black;
+    background: white;
+    pointer-events: none;
+    cursor: default;
+  }
+}

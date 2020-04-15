@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { InputText } from './extra/InputText'
+import { Button } from './extra/Button'
 
 import './styles/recover.scss'
 
@@ -33,7 +34,7 @@ export class Recover extends Component<{}, {}> {
         <InputText icon='mail' placeholder='adres e-mail' email required ref={this.email} />
 
         <span><Link to='/login'>wróć do logowania</Link></span>
-        <input type='button' value='Potwierdź' onClick={this.onSubmit} />
+        <Button value='Potwierdź' onClick={this.onSubmit} />
       </div>
     )
   }
