@@ -3,17 +3,18 @@ import React, { Component } from 'react'
 import './styles/button.scss'
 
 interface Props {
-  value: string,
-  onClick? (event: React.MouseEvent<HTMLInputElement, MouseEvent>): void,
-  type?: string
+  value: string;
+  onClick? (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  type?: string;
+  className?: string;
 }
 
 export class Button extends Component<Readonly<Props>, {}> {
   render () {
-    const { value, onClick, type } = this.props
+    const { value, onClick, type, className } = this.props
 
     return (
-      <button className={`btn type-${type || '0'}`} onClick={onClick}>{value}</button>
+      <button className={`btn type-${type || '0'}${className ? ` ${className}` : ''}`} onClick={onClick}>{value}</button>
     )
   }
 }

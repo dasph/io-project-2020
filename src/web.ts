@@ -1,9 +1,11 @@
 import * as Koa from 'koa'
 import * as send from 'koa-send'
+import * as cors from '@koa/cors'
 import * as serve from 'koa-static'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
 import { Domain } from './koa-domain'
+import { onSignup, onConfirm, onLogin } from './service'
 
 const { NODE_ENV, DOMAIN } = process.env
 
@@ -14,26 +16,21 @@ const redir: Koa.Middleware = (ctx, next) => {
 }
 
 const main = new Router()
-const api = new Router()
-
-main
   .use(serve('./public'))
-  .get(['/login', '/signup', '/recover', '/pricing', '/about', '/contact'], (ctx) => send(ctx, 'public/index.html'))
-  .all('*', (ctx) => ctx.redirect('/'))
+  .get('*', (ctx) => send(ctx, 'public/index.html'))
 
-api
+const api = new Router()
+  .use(cors())
   .use(bodyParser())
-  .get('/login', (ctx, next) => {
-    console.log(ctx.request.body)
-    ctx.body = 'kek'
-  })
+  .post('/signup', onSignup)
+  .post('/confirm', onConfirm)
+  .post('/login', onLogin)
   .all('*', (ctx) => ctx.throw(405))
 
 const domain = new Domain()
-
-domain
   .use('', main.routes())
   .use('api', api.routes())
+  .use('dashboard', main.routes())
 
 export default new Koa()
   .use(redir)

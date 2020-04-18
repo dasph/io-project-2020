@@ -4,8 +4,11 @@ module.exports = {
     es6: true
   },
   extends: [
-    'plugin:react/recommended',
-    'standard'
+    'standard',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended'
   ],
   globals: {
     Atomics: 'readonly',
@@ -24,6 +27,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   settings: {
     react: {

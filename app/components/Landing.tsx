@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 import { Navigation } from './Navigation'
 import { Welcome } from './Welcome'
@@ -18,13 +18,16 @@ export class Landing extends Component<{}, {}> {
       <BrowserRouter>
         <Navigation />
         <main className='landing-page'>
-          <Route path='/' exact component={Welcome} />
-          <Route path='/login' exact component={Login} />
-          <Route path='/signup' exact component={Signup} />
-          <Route path='/recover' exact component={Recover} />
-          <Route path='/pricing' exact component={Pricing} />
-          <Route path='/contact' exact component={Contact} />
-          <Route path='/about' exact component={About} />
+          <Switch>
+            <Route path='/' exact component={Welcome} />
+            <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
+            <Route path='/recover' component={Recover} />
+            <Route path='/pricing' component={Pricing} />
+            <Route path='/contact' component={Contact} />
+            <Route path='/about' component={About} />
+            <Redirect to='/' />
+          </Switch>
         </main>
       </BrowserRouter>
     )

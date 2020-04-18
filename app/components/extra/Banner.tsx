@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import './styles/banner.scss'
 
 interface Props {
-  title: string,
-  desciption: string
+  title: string;
+  desciption: string;
 }
 
 export class Banner extends Component<Readonly<Props>, {}> {

@@ -1,4 +1,4 @@
-import * as Koa from 'koa' // eslint-disable-line
+import * as Koa from 'koa'
 
 class Domain {
   subs: Array<Array<string>>

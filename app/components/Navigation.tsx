@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 import './styles/navigation.scss'
 
-export class Navigation extends Component<{}, { toggle: Boolean }> {
+interface State {
+  toggle: boolean;
+}
+
+export class Navigation extends Component<{}, State> {
   constructor (props: Readonly<{}>) {
     super(props)
 

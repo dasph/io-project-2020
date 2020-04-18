@@ -1,14 +1,14 @@
 import * as Koa from 'koa'
 import { promisify } from 'util'
 import { exec } from 'child_process'
-import { IncomingMessage } from 'http' // eslint-disable-line
+import { IncomingMessage } from 'http'
 import * as bodyPaser from 'koa-bodyparser'
-import { request, RequestOptions } from 'https' // eslint-disable-line
+import { request, RequestOptions } from 'https'
 import { createHmac, timingSafeEqual } from 'crypto'
 import { createSecureServer } from './src/servers'
 
-type SlackRequestOptions = RequestOptions & { hostname: 'hooks.slack.com', payload: string }
-type HastebinRequestOptions = RequestOptions & { hostname: 'hastebin.com', payload: string }
+type SlackRequestOptions = RequestOptions & { hostname: 'hooks.slack.com'; payload: string }
+type HastebinRequestOptions = RequestOptions & { hostname: 'hastebin.com'; payload: string }
 
 const { WEBHOOK_SECRET, SLACK_NOTIFIER } = process.env
 
@@ -51,7 +51,7 @@ const requestSend = (options: RequestOptions, payload?: string) => {
 }
 
 const requestDigest = (stream: IncomingMessage) => {
-  return new Promise<{ json: boolean, data: string }>((resolve, reject) => {
+  return new Promise<{ json: boolean; data: string }>((resolve, reject) => {
     const json = stream.headers['content-type'] === 'application/json'
     const data: Array<Buffer> = []
 

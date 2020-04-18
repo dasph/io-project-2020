@@ -32,6 +32,83 @@
     align-self: center;
   }
 
+  > div {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    max-height: 350px;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      width: 100%;
+      transition: 0.2s ease-in-out;
+
+      &.hide {
+        height: 100px;
+        width: 0;
+        opacity: 0;
+      }
+
+      > img {
+        width: 128px;
+        height: 128px;
+        padding: 16px;
+        margin: 10px;
+        border-radius: 80px;
+        align-self: center;
+      }
+
+      &.success {
+        img {
+          background: #25773880;
+        }
+
+        span {
+          &:first-of-type {
+            align-self: center;
+            letter-spacing: 2px;
+          }
+
+          &:last-of-type {
+            text-indent: 1.5em;
+            font-size: .7em;
+            margin-bottom: 5px;
+          }
+        }
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      &.error {
+        img {
+          background: #e2e2e2;
+        }
+
+        span {
+          align-self: center;
+
+          &:first-of-type {
+            letter-spacing: 2px;
+          }
+
+          &:last-of-type {
+            font-size: .8em;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      &.loading {
+        position: relative;
+        left: 25%;
+      }
+    }
+  }
+
   .labels {
     display: flex;
     flex-direction: column;
@@ -50,26 +127,13 @@
     }
   }
 
-  input[type='button'] {
-    color: white;
-    font-size: .8em;
-    font-weight: 300;
-    margin-top: 20px;
-    background: black;
-    padding: 5px 0px;
-    border: 1px solid black;
-    cursor: pointer;
-    transition: .1s ease-in-out;
-
-    &:hover {
-      color: black;
-      background: transparent;
-      @include autoprefix(backdrop-filter, blur(5px));
-    }
+  > span {
+    margin: 5px 0px 2px;
+    font-size: .5em;
   }
 
-  > span {
-    margin: 10px 0px 2px;
-    font-size: .5em;
+  > button {
+    font-size: .8em;
+    margin-top: 20px;
   }
 }

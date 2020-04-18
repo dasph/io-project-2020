@@ -60,6 +60,15 @@
     font-size: .5em;
   }
 
+  .block {
+    pointer-events: none;
+  }
+
+  .error {
+    color: var(--color-error);
+    margin-bottom: 0;
+  }
+
   .signup a {
     text-decoration: underline;
   }

@@ -11,10 +11,23 @@
   flex-direction: column;
   margin: 5px 0px;
 
-  > div {
+  > div:first-of-type {
     display: flex;
     flex-direction: row;
     font-size: 2em;
+
+    > img {
+      height: 42px;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.8em;
+      > img {
+        height: 36px;
+        padding: 2px;
+      }
+    }
 
     > div {
       display: flex;
@@ -60,11 +73,6 @@
       place-self: center;
       outline: none;
     }
-  }
-
-  img {
-    height: 42px;
-    padding: 5px;
   }
 
   &::after {
