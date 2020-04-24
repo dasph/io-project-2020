@@ -11,16 +11,13 @@ export class Pricing extends Component<{}, {}> {
         <div>
           <Banner title='CENNIK' />
           <div>
-
             <div>
-
               <div>
                 <img src='images/icon-bookmark.svg' />
                 <div>
                   <span>Wysokość opłat za zakwaterowanie</span>
                 </div>
               </div>
-
               <div>
                 <span>
                   Wysokość opłat za zakwaterowanie w naszym domu studenckim
@@ -96,7 +93,6 @@ export class Pricing extends Component<{}, {}> {
                 </table>
               </div>
             </div>
-
           </div >
         </div >
         <Footer />
