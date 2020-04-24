@@ -15,7 +15,6 @@ export class Footer extends Component<{}, {}> {
           <span>STRONY</span>
           <Link to='/login'>Zaloguj</Link>
           <Link to='/pricing'>Cennik</Link>
-          {/* <Link to='/contact'>Kontakt</Link> */}
           <Link to='/about'>O Nas</Link>
         </div>
         <div>
