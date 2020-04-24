@@ -30,7 +30,7 @@ interface State {
 export class InputDate extends Component<Readonly<Props>, State> {
   input: React.RefObject<HTMLInputElement>
 
-  constructor(props: Props) {
+  constructor (props: Props) {
     super(props)
 
     this.state = {

@@ -27,7 +27,7 @@ const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?
 export class InputText extends Component<Readonly<Props>, State> {
   input: React.RefObject<HTMLInputElement>
 
-  constructor(props: Props) {
+  constructor (props: Props) {
     super(props)
 
     this.state = {

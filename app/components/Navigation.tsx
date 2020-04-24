@@ -8,7 +8,7 @@ interface State {
 }
 
 export class Navigation extends Component<{}, State> {
-  constructor(props: Readonly<{}>) {
+  constructor (props: Readonly<{}>) {
     super(props)
 
     this.state = {

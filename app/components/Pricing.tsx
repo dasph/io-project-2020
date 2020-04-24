@@ -97,7 +97,6 @@ export class Pricing extends Component<{}, {}> {
               </div>
             </div>
 
-
           </div >
         </div >
         <Footer />
@@ -105,6 +104,3 @@ export class Pricing extends Component<{}, {}> {
     )
   }
 }
-
-
-{/*  */ }

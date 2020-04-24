@@ -26,7 +26,7 @@ export class Signup extends Component<{}, State> {
 
   confirmation: string | null
 
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.inputs = [{
