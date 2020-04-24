@@ -4,17 +4,16 @@ import './styles/banner.scss'
 
 interface Props {
   title: string;
-  desciption: string;
 }
 
 export class Banner extends Component<Readonly<Props>, {}> {
   render () {
-    const { title, desciption } = this.props
+    const { title } = this.props
 
     return (
       <div className='banner'>
+        <img src='images/logo.svg' />
         <span>{title}</span>
-        <span>{desciption}</span>
       </div>
     )
   }

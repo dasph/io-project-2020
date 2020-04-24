@@ -8,7 +8,7 @@ export class Pricing extends Component<{}, {}> {
   render () {
     return (
       <div className='pricing-page'>
-        <Banner title='cennik' desciption='tutaj będzie cennik' />
+        <Banner title='CENNIK' />
         <div>
         </div>
         <Footer />

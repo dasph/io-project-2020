@@ -8,7 +8,7 @@ export class Contact extends Component<{}, {}> {
   render () {
     return (
       <div className='contact-page'>
-        <Banner title='kontakt' desciption='tutaj będzie kontakt z nami' />
+        <Banner title='kontakt' />
         <div>
         </div>
         <Footer />
