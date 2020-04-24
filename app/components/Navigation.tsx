@@ -37,7 +37,6 @@ export class Navigation extends Component<{}, State> {
           <Link to='/'><img src='images/logo.svg' /></Link>
           <ul onClick={() => this.onLink()}>
             <li><Link to='/pricing'>Cennik</Link></li>
-            <li><Link to='/contact'>Kontakt</Link></li>
             <li><Link to='/about'>O Nas</Link></li>
           </ul>
         </div>

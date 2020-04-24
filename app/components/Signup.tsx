@@ -80,7 +80,7 @@ export class Signup extends Component<{}, State> {
     if (step === 5) {
       request('confirm', { body: JSON.stringify({ confirmation }) })
         .then(() => this.setState({ step: 6 }))
-        .catch(() => this.setState({ step: 4, error: 'Unknown confirmation key' }))
+        .catch(() => this.setState({ step: 4, error: 'Nieznany kod aktywacyjny' }))
     }
   }
 
@@ -103,20 +103,20 @@ export class Signup extends Component<{}, State> {
           </div>
 
           <div className={step === 1 || step === 2 ? '' : 'hide'}>
-            <InputText icon='bookmark' placeholder='firstname' required ref={firstname} />
-            <InputText icon='bookmark' placeholder='lastname' required ref={lastname} />
-            <InputDate icon='bookmark' placeholder='date of birth' nofuture required ref={dob} />
-            <InputText icon='phone' placeholder='phone number' phone required ref={phone} />
+            <InputText icon='bookmark' placeholder='imię' required ref={firstname} />
+            <InputText icon='bookmark' placeholder='nazwisko' required ref={lastname} />
+            <InputDate icon='bookmark' placeholder='data urodzenia' nofuture required ref={dob} />
+            <InputText icon='phone' placeholder='numer telefonu' phone required ref={phone} />
           </div>
 
           <div className={`success${step === 3 ? '' : ' hide'}`}>
-            <span>success!</span>
+            <span>sukces!</span>
             <img src='images/icon-mail.svg' />
-            <span>We have sent an email with a confirmation link to your email address</span>
+            <span>Wysłaliśmy link aktywacyjny na twoją skrzynkę</span>
           </div>
 
           <div className={`error${step === 4 ? '' : ' hide'}`}>
-            <span>error!</span>
+            <span>błąd!</span>
             <img src='images/icon-arrow.svg' style={{ transform: 'rotate(270deg)' }} />
             <span>{error}</span>
           </div>
@@ -126,9 +126,9 @@ export class Signup extends Component<{}, State> {
           </div>
 
           <div className={`success${step === 6 ? '' : ' hide'}`}>
-            <span>success!</span>
+            <span>sukces!</span>
             <img src='images/icon-heart.svg' />
-            <span>You have successfully created your account. Head over to the <Link to='/login'>login page</Link></span>
+            <span>Twoje konto zostało utworzone!.<Link to='/login'>Logowanie</Link></span>
           </div>
         </div>
 

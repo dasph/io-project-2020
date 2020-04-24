@@ -73,15 +73,15 @@ export class InputText extends Component<Readonly<Props>, State> {
     if (!value) return
 
     if (email && !isEmail(value)) {
-      return this.setState({ error: 'please enter a proper email address' })
+      return this.setState({ error: 'nieprawidłowy adres e-mail' })
     }
 
     if (confirm && confirm.current.state.value && confirm.current.state.value !== value) {
-      return this.setState({ error: 'passwords do not match' })
+      return this.setState({ error: 'hasła nie są identyczne' })
     }
 
     if (password && !nocheck && !isValidPassword(value)) {
-      return this.setState({ error: 'password is too weak' })
+      return this.setState({ error: 'hasło jest za słabe' })
     }
 
     if (phone && value === '+48 ') {
@@ -89,7 +89,7 @@ export class InputText extends Component<Readonly<Props>, State> {
     }
 
     if (phone && !isMobilePhone(value.trim(), 'pl-PL', { strictMode: true })) {
-      return this.setState({ error: 'please enter a valid phone number' })
+      return this.setState({ error: 'nieprawidłowy numer telefonu' })
     }
   }
 
