@@ -25,13 +25,13 @@
           display: flex;
         background: transparent;
         flex-direction: column;
-        @media screen and (min-width: 1096px) {
-          flex-direction: row;
-        }
+        // @media screen and (min-width: 1096px) {
+        //   flex-direction: row;
+        // }
         >div{
           margin: 10px;
           background: rgba(255, 255, 255, 0.692);
-          flex: 1;
+          flex: auto;
           text-align: center;
           flex-direction: column;
           display: flex;

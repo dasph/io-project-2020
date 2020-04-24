@@ -67,6 +67,12 @@ export class About extends Component<{}, {}> {
                   "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
                 </span>
                 <span>
+                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                </span>
+                <span>
+                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                </span>
+                <span>
                   Tempore dolorem reiciendis optio nihil. Illo cupiditate et inventore aliquam aut quia natus ut. Eveniet accusamus in fugit quia non. Voluptatem ipsa rerum aut.
                   </span>
                 <span>
