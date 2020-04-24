@@ -4,8 +4,8 @@ import { Button } from './Button'
 import './styles/inputDate.scss'
 import './styles/inputText.scss'
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+const months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']
+const days = ['N', 'P', 'W', 'Ś', 'C', 'P', 'S']
 
 const WeekDays = () => <>{days.map((v) => <span key={v}>{v}</span>)}</>
 const range = (n: number, offset = 0) => [...Array(n).keys()].map((v) => v + offset)
@@ -30,7 +30,7 @@ interface State {
 export class InputDate extends Component<Readonly<Props>, State> {
   input: React.RefObject<HTMLInputElement>
 
-  constructor (props: Props) {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -98,7 +98,7 @@ export class InputDate extends Component<Readonly<Props>, State> {
 
     if (!pick) return
 
-    const error = nofuture && new Date() < pick ? 'Date can not be set in the future' : ''
+    const error = nofuture && new Date() < pick ? 'Data urodzenia nie może być w przyszłości' : ''
     const value = [pick.getDate(), pick.getMonth(), pick.getFullYear()].map((v, i) => `${i === 1 ? v + 1 : v}`.padStart(2, '0')).join(' / ')
 
     this.setState({ modal: false, value, error })
@@ -126,12 +126,12 @@ export class InputDate extends Component<Readonly<Props>, State> {
             />
           </div>
         </div>
-        { modal &&
+        {modal &&
           <div className='modal-calendar'>
             <div />
             <div>
               <div>
-                <img src='images/icon-arrow.svg' onClick={() => this.onMove(false)}/>
+                <img src='images/icon-arrow.svg' onClick={() => this.onMove(false)} />
                 <span onClick={this.toggleMode} className={mode === 2 ? 'cursor-default' : ''}>
                   <div className={mode > 0 ? 'hide' : ''}>{months[month]}</div>
                   <div className={mode > 1 ? 'hide' : ''}>{year}</div>
@@ -141,7 +141,7 @@ export class InputDate extends Component<Readonly<Props>, State> {
               </div>
 
               <div className={mode === 0 ? 'days' : mode === 1 ? 'months' : 'years'}>
-                { mode === 0 && <>
+                {mode === 0 && <>
                   <WeekDays />
 
                   {range(day, first).map((v) => <div key={v} className='day disabled'>{v}</div>)}
@@ -149,18 +149,18 @@ export class InputDate extends Component<Readonly<Props>, State> {
                   {range(42 - last - day, 1).map((v) => <div key={v} className='day disabled'>{v}</div>)}
                 </>}
 
-                { mode === 1 && <>
+                {mode === 1 && <>
                   {months.map((v, month) => <div key={`${year}${month}`} className='month' onClick={() => this.onPick({ month })}>{v}</div>)}
                 </>}
 
-                { mode === 2 && <>
+                {mode === 2 && <>
                   {range(12, year).map((year) => <div key={year} className='year' onClick={() => this.onPick({ year })}>{year}</div>)}
                 </>}
               </div>
 
               <div>
-                <Button value='cancel' onClick={() => this.setState({ modal: false })} />
-                <Button type={pick ? '0' : 'disabled'} value='confirm' onClick={this.onSubmit} />
+                <Button value='anuluj' onClick={() => this.setState({ modal: false })} />
+                <Button type={pick ? '0' : 'disabled'} value='wybierz' onClick={this.onSubmit} />
               </div>
             </div>
           </div>
