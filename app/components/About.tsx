@@ -20,19 +20,17 @@ export class About extends Component<{}, {}> {
               </div>
               <div>
                 <span>
-                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                  Spotkaj ludzi, którzy zostaną Twoimi przyjaciółmi na lata!
                 </span>
                 <span>
-                  Tempore dolorem reiciendis optio nihil. Illo cupiditate et inventore aliquam aut quia natus ut. Eveniet accusamus in fugit quia non. Voluptatem ipsa rerum aut.
-                  </span>
-                <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
+                  Nasze akademiki zagwarantują Ci wszystko, czego potrzebujesz, żeby komfortowo mieszkać, studiować i spędzać czas wolny.
                 </span>
                 <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
+                  Już teraz wynajmij jeden z wygodnych pokoi studenckich o wysokim standardzie, który da Ci poczucie prywatności i komfortu, a jednocześnie zapewni atmosferę kampusu międzynarodowej uczelni, gdzie poznasz studentów z całego świata!
                 </span>
               </div>
             </div>
+
             <div>
               <div>
                 <img src='images/icon-lock.svg' />
@@ -42,19 +40,15 @@ export class About extends Component<{}, {}> {
               </div>
               <div>
                 <span>
-                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                  Nasz akademik znajduje się w Rzeszowie na ulicy akademickiej, blisko przystanków autobusowych. Akademik ma świetne połączenia komunikacją miejską ze ścisłym centrum oraz z największymi warszawskimi uczelniami.
                 </span>
-                <span>
-                  Tempore dolorem reiciendis optio nihil. Illo cupiditate et inventore aliquam aut quia natus ut. Eveniet accusamus in fugit quia non. Voluptatem ipsa rerum aut.
-                  </span>
-                <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
-                </span>
-                <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
-                </span>
+
               </div>
             </div>
+            <div>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2563.539549245037!2d21.979551215734595!3d50.01998497941821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473cfbb14be5e615%3A0x4b71e736b8f35f9a!2sAkademicka%201%2C%2035-084%20Rzesz%C3%B3w!5e0!3m2!1spl!2spl!4v1587740207651!5m2!1spl!2spl"></iframe>
+            </div>
+
             <div>
               <div>
                 <img src='images/icon-chat.svg' />
@@ -64,25 +58,17 @@ export class About extends Component<{}, {}> {
               </div>
               <div>
                 <span>
-                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                  Zadzwoń do nas lub napisz maila!
                 </span>
                 <span>
-                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
+                  +48 815 346 060
                 </span>
                 <span>
-                  "Quasi facilis ipsam et molestias et tempore. Ea sed tempora ut et vel ad deleniti. Modi error sapiente dolorem.
-                </span>
-                <span>
-                  Tempore dolorem reiciendis optio nihil. Illo cupiditate et inventore aliquam aut quia natus ut. Eveniet accusamus in fugit quia non. Voluptatem ipsa rerum aut.
-                  </span>
-                <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
-                </span>
-                <span>
-                  Ut iste ipsam corporis sed natus. Similique aut laudantium ipsum aliquid. Alias quia accusantium et est aut ut molestias."
+                  kontakt@indorm.life
                 </span>
               </div>
             </div>
+
           </div>
         </div>
         <Footer />
