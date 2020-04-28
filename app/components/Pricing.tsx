@@ -34,30 +34,34 @@ export class Pricing extends Component<{}, {}> {
             <div>
               <div>
                 <table>
-                  <tr>
-                    <th>Standard</th>
-                    <th>Studenci i doktoranci</th>
-                    <th>Pełna odpłatność</th>
-                    <th>Pełna odpłatność</th>
-                  </tr>
-                  <tr>
-                    <td>Komfort+</td>
-                    <td>450 PLN</td>
-                    <td>550 PLN</td>
-                    <td>550 PLN</td>
-                  </tr>
-                  <tr>
-                    <td>Komfort</td>
-                    <td>400 PLN</td>
-                    <td>490 PLN</td>
-                    <td>550 PLN</td>
-                  </tr>
-                  <tr>
-                    <td>Podstawowy</td>
-                    <td>350 PLN</td>
-                    <td>430 PLN</td>
-                    <td>550 PLN</td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Standard</th>
+                      <th>Studenci i doktoranci</th>
+                      <th>Pełna odpłatność</th>
+                      <th>Pełna odpłatność</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Komfort+</td>
+                      <td>450 PLN</td>
+                      <td>550 PLN</td>
+                      <td>550 PLN</td>
+                    </tr>
+                    <tr>
+                      <td>Komfort</td>
+                      <td>400 PLN</td>
+                      <td>490 PLN</td>
+                      <td>550 PLN</td>
+                    </tr>
+                    <tr>
+                      <td>Podstawowy</td>
+                      <td>350 PLN</td>
+                      <td>430 PLN</td>
+                      <td>550 PLN</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -74,22 +78,26 @@ export class Pricing extends Component<{}, {}> {
               <div>
                 <span>Rodzaje standardów w akademikach </span>
                 <table>
-                  <tr>
-                    <th>Standard</th>
-                    <th>Opis</th>
-                  </tr>
-                  <tr>
-                    <td>Komfort+</td>
-                    <td>Dwuosobowe pokoje, z indywidualną łazienką i niewielkim aneksem kuchennym</td>
-                  </tr>
-                  <tr>
-                    <td>Komfort</td>
-                    <td>Dwuosobowe pokoje, połączone w dwupokojowe studia. Wspólna łazienka i aneks kuchenny na studio.</td>
-                  </tr>
-                  <tr>
-                    <td>Standard</td>
-                    <td>Pokoje dwu- i trzyosobowe z łóżkami piętrowymi, połączone w czteropokojowe składy. Węzeł sanitarny (prysznic, dwie umywalki, toaleta) współdzielony przez cztery pokoje.</td>
-                  </tr>
+                  <thead>
+                    <tr>
+                      <th>Standard</th>
+                      <th>Opis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Komfort+</td>
+                      <td>Dwuosobowe pokoje, z indywidualną łazienką i niewielkim aneksem kuchennym</td>
+                    </tr>
+                    <tr>
+                      <td>Komfort</td>
+                      <td>Dwuosobowe pokoje, połączone w dwupokojowe studia. Wspólna łazienka i aneks kuchenny na studio.</td>
+                    </tr>
+                    <tr>
+                      <td>Standard</td>
+                      <td>Pokoje dwu- i trzyosobowe z łóżkami piętrowymi, połączone w czteropokojowe składy. Węzeł sanitarny (prysznic, dwie umywalki, toaleta) współdzielony przez cztery pokoje.</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
