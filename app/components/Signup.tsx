@@ -134,7 +134,7 @@ export class Signup extends Component<{}, State> {
 
         {step < 5 && <span><Link to='/login'>Masz konto?</Link></span>}
         {step < 3 && <Button value={step === 0 ? 'Dalej' : 'Zarejestruj'} onClick={this.onSubmit} />}
-        {step === 4 && <Button value='Go back' onClick={() => this.setState({ step: 0 })} />}
+        {step === 4 && <Button value='Powrót' onClick={() => this.setState({ step: 0 })} />}
       </div>
     )
   }
