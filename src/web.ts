@@ -30,7 +30,6 @@ const api = new Router()
 const domain = new Domain()
   .use('', main.routes())
   .use('api', api.routes())
-  .use('dashboard', main.routes())
 
 export default new Koa()
   .use(redir)

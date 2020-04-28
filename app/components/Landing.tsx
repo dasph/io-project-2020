@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Navigation } from './Navigation'
 import { Welcome } from './Welcome'
 import { Pricing } from './Pricing'
-import { Contact } from './Contact'
 import { About } from './About'
 import { Login } from './Login'
 import { Signup } from './Signup'
@@ -24,7 +23,6 @@ export class Landing extends Component<{}, {}> {
             <Route path='/signup' component={Signup} />
             <Route path='/recover' component={Recover} />
             <Route path='/pricing' component={Pricing} />
-            <Route path='/contact' component={Contact} />
             <Route path='/about' component={About} />
             <Redirect to='/' />
           </Switch>
