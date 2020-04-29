@@ -52,8 +52,8 @@ export class Login extends Component<{}, State> {
 
     request('login', { body: JSON.stringify(payload) })
       .then(({ bearer }: { bearer: string }) => {
-        const { protocol, host } = location
-        location.replace(`${protocol}//dashboard.${host}/?bearer=${encodeURIComponent(bearer)}`)
+        localStorage.setItem('bearer', bearer)
+        location.reload()
       })
       .catch(() => this.setState({ error: true }))
       .then(() => this.setState({ block: false }))

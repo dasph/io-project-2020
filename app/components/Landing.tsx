@@ -11,7 +11,7 @@ import { Recover } from './Recover'
 
 import './styles/landing.scss'
 
-export class Landing extends Component<{}, {}> {
+export default class Landing extends Component<{}, {}> {
   render () {
     return (
       <BrowserRouter>
