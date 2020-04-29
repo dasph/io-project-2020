@@ -53,6 +53,7 @@ export class Login extends Component<{}, State> {
     request('login', { body: JSON.stringify(payload) })
       .then(({ bearer }: { bearer: string }) => {
         localStorage.setItem('bearer', bearer)
+        history.pushState({}, null, '/')
         location.reload()
       })
       .catch(() => this.setState({ error: true }))

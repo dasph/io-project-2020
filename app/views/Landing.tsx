@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
-import { Navigation } from './Navigation'
-import { Welcome } from './Welcome'
-import { Pricing } from './Pricing'
-import { About } from './About'
-import { Login } from './Login'
-import { Signup } from './Signup'
-import { Recover } from './Recover'
+import { Navigation } from '../components/Navigation'
+import { Welcome } from '../components/Welcome'
+import { Pricing } from '../components/Pricing'
+import { About } from '../components/About'
+import { Login } from '../components/Login'
+import { Signup } from '../components/Signup'
+import { Recover } from '../components/Recover'
 
 import './styles/landing.scss'
 
