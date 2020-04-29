@@ -72,9 +72,8 @@
           }
 
           &:last-of-type {
-            text-indent: 1.5em;
-            font-size: .7em;
             margin-bottom: 5px;
+            text-align: center;
           }
         }
 
@@ -85,7 +84,7 @@
 
       &.error {
         img {
-          background: #e2e2e2;
+          background: #da0b0b80;
         }
 
         span {
