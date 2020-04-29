@@ -1,4 +1,10 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { Sidebar } from '../components/Sidebar'
+import { UserNavigaion } from '../components/UserNavigaion'
+
+import 'bootstrap/scss/bootstrap.scss'
+import './styles/dashboard.scss'
 
 type Props = { bearer: string }
 
@@ -29,10 +35,23 @@ export default class Dashboard extends Component<Props, {}> {
   }
 
   render () {
-    const { firstname, lastname } = this.userInfo
+    const { firstname, lastname, rank } = this.userInfo
 
     return (
-      <div>Hello, {firstname} {lastname}</div>
+      <BrowserRouter>
+        <Sidebar rank={rank} />
+        <main className='dashboard'>
+          <UserNavigaion rank={rank} />
+          <span>Hello, {firstname} {lastname}</span>
+          <Switch>
+            <Route path='/' exact />
+            <Route path='/announcements' />
+            <Route path='/laundry' />
+            <Route path='/tools' />
+            <Redirect to='/' />
+          </Switch>
+        </main>
+      </BrowserRouter>
     )
   }
 }

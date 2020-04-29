@@ -1,0 +1,19 @@
+/***************************************/
+/* ************* DASHBOARD ************* */
+/***************************************/
+
+a, a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app {
+  flex-direction: row;
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+}
