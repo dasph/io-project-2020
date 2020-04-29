@@ -41,13 +41,14 @@ export default class Dashboard extends Component<Props, {}> {
       <BrowserRouter>
         <Sidebar rank={rank} />
         <main className='dashboard'>
-          <UserNavigaion rank={rank} />
+          <Route path='/' children={({ location: { pathname } }) => <UserNavigaion rank={rank} path={pathname} /> } />
           <span>Hello, {firstname} {lastname}</span>
           <Switch>
             <Route path='/' exact />
             <Route path='/announcements' />
             <Route path='/laundry' />
             <Route path='/tools' />
+            <Route path='/settings' />
             <Redirect to='/' />
           </Switch>
         </main>

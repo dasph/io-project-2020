@@ -9,4 +9,26 @@
   max-height: 65px;
   border-bottom: 1px solid #848484;
 
+  span {
+    text-transform: uppercase;
+    font-size: 1.5em;
+  }
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  a {
+    align-self: center;
+  }
+
+  .dropdown-item {
+    font-size: 1.4em;
+
+    &:active, &.active {
+      background: #848484;
+    }
+  }
+
 }

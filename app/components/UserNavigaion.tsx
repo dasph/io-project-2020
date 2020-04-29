@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar, Nav } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
 
 import './styles/userNavigaion.scss'
 
 type Props = {
-  rank: number
+  rank: number;
+  path: string;
 }
 
 const logout = () => {
@@ -20,16 +21,19 @@ export class UserNavigaion extends Component<Props, {}> {
   }
 
   render () {
+    const { path } = this.props
+
     return (
-      <Navbar className='user-navigaion' bg='dark' variant='dark'>
+      <Navbar className='user-navigaion justify-content-between' bg='dark' variant='dark'>
         <Navbar.Brand>
-          <a>dashboard</a>
+          {path.slice(1) ? path.slice(1) : 'dashboard'}
         </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse>
-        </Navbar.Collapse>
+
         <Nav>
-          <Nav.Link onClick={logout} >Log out</Nav.Link>
+          <NavDropdown title={<img src='images/icon-settings.svg' />} id={null}>
+            <NavDropdown.Item as={NavLink} to='/settings'>Settings</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link onClick={logout}>Log out</Nav.Link>
         </Nav>
       </Navbar>
     )
