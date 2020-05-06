@@ -4,10 +4,17 @@ import { Navbar, Nav } from 'react-bootstrap'
 
 import './styles/sidebar.scss'
 
-const links = ['dashboard', 'announcements', 'laundry', 'tools']
+const links = [
+  { rank: 3, label: 'dashboard' },
+  { rank: 0, label: 'requests' },
+  { rank: 3, label: 'announcements' },
+  { rank: 3, label: 'laundry' },
+  { rank: 3, label: 'tools' }
+]
 
 type Props = {
-  rank: number
+  rank: number;
+  disabled: boolean;
 }
 
 export class Sidebar extends Component<Props, {}> {
@@ -16,6 +23,8 @@ export class Sidebar extends Component<Props, {}> {
   }
 
   render () {
+    const { rank, disabled }  = this.props
+
     return (
       <div className='sidebar'>
         <div>
@@ -23,7 +32,12 @@ export class Sidebar extends Component<Props, {}> {
           <span>indorm</span>
         </div>
         <Navbar className='align-items-start'>
-          {links.map((l, i) => <Nav.Link key={i} as={NavLink} exact to={i > 0 ? l : '/'}><img src={`images/icon-${l}.svg`} /><span>{l}</span></Nav.Link>)}
+          {links.filter(({ rank: r }) => r >= rank ).map(({ label }, i) => (
+            <Nav.Link disabled={disabled} key={i} as={NavLink} exact to={i > 0 ? label : '/'}>
+              <img src={`images/icon-${label}.svg`} />
+              <span>{label}</span>
+            </Nav.Link>
+          ))}
         </Navbar>
       </div>
     )

@@ -14,7 +14,7 @@ export class Button extends Component<Readonly<Props>, {}> {
     const { value, onClick, type, className } = this.props
 
     return (
-      <button className={`btn type-${type || '0'}${className ? ` ${className}` : ''}`} onClick={onClick}>{value}</button>
+      <button className={`custom-btn type-${type || '0'}${className ? ` ${className}` : ''}`} onClick={onClick}>{value}</button>
     )
   }
 }

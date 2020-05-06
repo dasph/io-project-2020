@@ -7,7 +7,7 @@ import './styles/inputText.scss'
 const months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']
 const days = ['N', 'P', 'W', 'Ś', 'C', 'P', 'S']
 
-const WeekDays = () => <>{days.map((v) => <span key={v}>{v}</span>)}</>
+const WeekDays = () => <>{days.map((v, i) => <span key={i}>{v}</span>)}</>
 const range = (n: number, offset = 0) => [...Array(n).keys()].map((v) => v + offset)
 
 interface Props {
@@ -16,6 +16,9 @@ interface Props {
   placeholder?: string;
   required?: boolean;
   nofuture?: boolean;
+  nopast?: boolean;
+  onSubmit?: () => void;
+  style?: object;
 }
 
 interface State {
@@ -93,19 +96,21 @@ export class InputDate extends Component<Readonly<Props>, State> {
   }
 
   onSubmit () {
-    const { nofuture } = this.props
+    const { nofuture, nopast, onSubmit } = this.props
     const { pick } = this.state
 
     if (!pick) return
 
-    const error = nofuture && new Date() < pick ? 'Data urodzenia nie może być w przyszłości' : ''
+    const error = nofuture && new Date() < pick ? 'Data nie może być w przyszłości' : ''
+      || nopast && new Date() > pick ? 'Data nie może być w przeszłości' : ''
     const value = [pick.getDate(), pick.getMonth(), pick.getFullYear()].map((v, i) => `${i === 1 ? v + 1 : v}`.padStart(2, '0')).join(' / ')
 
     this.setState({ modal: false, value, error })
+    onSubmit && onSubmit()
   }
 
   render () {
-    const { className, icon, placeholder } = this.props
+    const { className, icon, placeholder, style } = this.props
     const { value, error, mode, modal, date, pick } = this.state
 
     const month = date.getMonth()
@@ -116,7 +121,7 @@ export class InputDate extends Component<Readonly<Props>, State> {
     const last = new Date(year, month + 1, 0).getDate()
 
     return (
-      <div className={`input-text input-date${modal ? ' active' : ''}${className ? ` ${className}` : ''}`}>
+      <div className={`input-text input-date${modal ? ' active' : ''}${className ? ` ${className}` : ''}`} style={style}>
         <div>
           {icon && <img src={`images/icon-${icon}.svg`} />}
           <div data-error={error}>

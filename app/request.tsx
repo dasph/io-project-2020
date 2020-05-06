@@ -2,7 +2,7 @@ const { protocol, host } = location
 
 const bearer = () => localStorage.getItem('bearer')
 
-export default (method: string, conf?: RequestInit) => {
+export default (method: string, conf: RequestInit = {}) => {
   const { headers, ...config } = conf
 
   const opts = Object.assign({
