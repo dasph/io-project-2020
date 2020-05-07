@@ -1,15 +1,18 @@
 import * as Koa from 'koa'
+import { Op } from 'sequelize'
 import Validator from 'validator'
 import { readFileSync } from 'fs'
 import { createTransport } from 'nodemailer'
 import { createHmac, randomBytes, Hmac } from 'crypto'
-import { User } from './models'
+import { User, Room, RoomOccupation, RoomRequest, UserInfo } from './models'
+
 
 const { MAIL_SECRET, AUTH_SECRET, DOMAIN } = process.env
 
 const { isEmail, isMobilePhone } = Validator
 
 const confirmTemplate = readFileSync('./public/templates/email-confirmation.html', { encoding: 'utf-8' })
+const reqRespTemplate = readFileSync('./public/templates/email-request-response.html', { encoding: 'utf-8' })
 
 type TSignupPayload = {
   email: string;
@@ -34,6 +37,11 @@ type TWebToken = {
 const sendConfirm = (to: string, confirm: string) => {
   const html = confirmTemplate.replace(/{link}/g, `https://${DOMAIN}/signup?confirm=${confirm}`)
   return createTransport(MAIL_SECRET).sendMail({ to, html, subject: 'Potwierdzenie rejestracji', from: 'Confirm Indorm <confirm@indorm.life>' })
+}
+
+const sendReqRes = (to: string, firstname: string, accepted: boolean) => {
+  const html = reqRespTemplate.replace(/{firstname}/, firstname).replace(/{action}/, accepted ? 'accepted' : 'denied')
+  return createTransport(MAIL_SECRET).sendMail({ to, html, subject: 'Room request', from: 'Administration <admin@indorm.life>' })
 }
 
 const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()\-=_+;:'"/?,<.>])(?=.{6,})/.test(password)
@@ -86,6 +94,12 @@ export const authorize: Koa.Middleware = (ctx, next) => {
   }).catch(() => ctx.throw(401))
 }
 
+export const isAdmin: Koa.Middleware<TWebToken> = (ctx, next) => {
+  const { rank } = ctx.state
+
+  return rank > 0 ? ctx.throw(403) : next()
+}
+
 export const onSignup: Koa.Middleware = async (ctx) => {
   const payload = ctx.request.body as TSignupPayload
   const { email, password, firstname, lastname, phone, dob } = payload
@@ -129,4 +143,77 @@ export const onLogin: Koa.Middleware = async (ctx) => {
   const bearer = sign({ signed: Date.now(), ...info.toJSON() } as TWebToken)
 
   ctx.body = { bearer }
+}
+
+export const onGetUserRes: Koa.Middleware<TWebToken> = async (ctx) => {
+  const { id } = ctx.state
+
+  const occ = await RoomOccupation.findOne({ where: { uid: id }, attributes: { exclude: ['id'] } })
+  if (!occ) {
+    const req = await RoomRequest.findOne({ where: { uid: id } })
+    return (ctx.body = { error: req ? 2 : 1 })
+  }
+
+  ctx.body = occ.toJSON()
+}
+
+export const onGetRooms: Koa.Middleware<TWebToken> = async (ctx) => {
+  const floor = +ctx.params.floor
+  const { gt, lt } = Op
+
+  if (!floor) return ctx.throw(400)
+
+  const rawRooms = await Room.findAll({ where: { id: { [gt]: floor * 100, [lt]: (floor + 1) * 100 } }, include: [RoomOccupation] })
+
+  const rooms = rawRooms.map(({ id, max, available, RoomOccupations }) => ({ id, current: RoomOccupations?.length, max, available }))
+
+  ctx.body = { rooms }
+}
+
+export const onPostRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
+  const { id } = ctx.state
+  const { rid, expire } = ctx.request.body as { rid: number, expire: number }
+
+  if (!rid || !expire) return ctx.throw(400)
+
+  if (expire < Date.now()) return ctx.throw(400, 'Date is in the past')
+
+  const room = await Room.findOne({ where: { id: rid } })
+  if (!room) return ctx.throw(404, 'Room not found')
+
+  const num = await RoomOccupation.count({ where: { rid } })
+  if (num >= room.max) return ctx.throw(400, 'Room is full')
+
+  const req = await RoomRequest.findOne({ where: { uid: id } })
+  if (req) return ctx.throw(400, 'Request already exists')
+
+  await RoomRequest.create({ rid, expire: new Date(expire), uid: id }).catch(console.error)
+
+  ctx.status = 200
+}
+
+export const onGetRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
+  const requests = await RoomRequest.findAll({ include: [UserInfo] })
+
+  ctx.body = { requests }
+}
+
+export const onPutRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
+  const { id, accept } = ctx.request.body as { id: string, accept: boolean }
+
+  if (!id || accept === undefined) return ctx.throw(400)
+
+  const req = await RoomRequest.findByPk(id, { include: [User, UserInfo] })
+  if (!req || !req.User || !req.UserInfo) return ctx.throw(404)
+
+  const { User: { email }, UserInfo: { firstname }, uid, rid, expire } = req
+
+  if (accept) {
+    RoomOccupation.create({ uid, rid, expire })
+    sendReqRes(email, firstname, true)
+  } else sendReqRes(email, firstname, false)
+
+  req.destroy()
+
+  ctx.body = 200
 }

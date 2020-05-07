@@ -1,0 +1,116 @@
+/****************************************/
+/* ************* ROOMLESS ************* */
+/****************************************/
+
+@import './autoprefix';
+
+.roomless {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    font-size: 1.5em;
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 1;
+    overflow: hidden;
+    transition: .3s ease-in-out;
+
+    &:nth-of-type(1) {
+      max-height: 400px;
+
+      span {
+        &:first-of-type {
+          font-size: 2em;
+          font-weight: 300;
+        }
+
+        &:last-of-type {
+          margin-bottom: 20px;
+        }
+      }
+
+      button {
+        max-width: 256px;
+        font-size: 1em;
+      }
+    }
+
+    &:nth-of-type(2) {
+      min-height: 180px;
+      max-height: 300px;
+
+      .dropdown-menu {
+        font-size: .7em;
+        min-width: 0;
+        text-align: center;
+      }
+
+      a:active {
+        background-color: #73787d;
+      }
+
+      > div {
+        &:nth-of-type(2) {
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          grid-template-columns: repeat(14, 1fr);
+          gap: 5px;
+          margin: 20px 0px;
+
+          > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            font-size: 0.8em;
+            background: var(--success);
+            @include autoprefix(user-select, none);
+
+            &.unavailable {
+              color: white;
+              background: var(--dark);
+              cursor: default;
+            }
+
+            &.occupied {
+              background: var(--warning);
+            }
+
+            @media screen and (max-width: 1024px) {
+              width: 25px;
+              height: 25px;
+              font-size: 0.5em;
+            }
+          }
+        }
+      }
+    }
+
+    &:nth-of-type(3), &:nth-of-type(4) {
+      max-height: 300px;
+      word-break: break-all;
+
+      span {
+        &:first-of-type {
+          font-size: 2em;
+          font-weight: 300;
+        }
+
+        &:last-of-type {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .hide {
+    max-width: 0;
+    max-height: 0 !important;
+    opacity: 0;
+  }
+}
