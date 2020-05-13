@@ -49,7 +49,7 @@ export class Residents extends Component<{}, State> {
       .catch((error: string) => error === 'Unauthorized' && location.replace('/'))
   }
 
-  onRoomChange (event: React.ChangeEvent<FormControlElement>) {
+  onRoomChange (event: React.ChangeEvent<HTMLInputElement>) {
     const { target: { value } } = event
 
     if (name && !/^\d{1,3}$/.test(value)) return
@@ -57,8 +57,7 @@ export class Residents extends Component<{}, State> {
     this.setState({ room: value }, this.search)
   }
 
-  // onNameChange (name: string, type: boolean) {
-  onNameChange (event: React.ChangeEvent<FormControlElement>) {
+  onNameChange (event: React.ChangeEvent<HTMLInputElement>) {
     const { target: { name, value } } = event
 
     if (value && !/^[a-zA-Z ]+$/.test(value)) return
