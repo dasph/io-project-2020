@@ -52,7 +52,7 @@ export class Residents extends Component<{}, State> {
   onRoomChange (event: React.ChangeEvent<HTMLInputElement>) {
     const { target: { value } } = event
 
-    if (name && !/^\d{1,3}$/.test(value)) return
+    if (value && !/^\d{1,3}$/.test(value)) return
 
     this.setState({ room: value }, this.search)
   }
