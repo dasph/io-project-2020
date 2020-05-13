@@ -5,7 +5,7 @@ import * as serve from 'koa-static'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
 import { Domain } from './koa-domain'
-import { onSignup, onConfirm, onLogin, authorize, isAdmin, onGetUserRes, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq } from './service'
+import { onSignup, onConfirm, onLogin, authorize, isAdmin, isManager, onGetUserRes, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents } from './service'
 
 const { NODE_ENV, DOMAIN } = process.env
 
@@ -32,6 +32,8 @@ const api = new Router()
 
   .get('/roomReq', authorize, isAdmin, onGetRoomReq)
   .put('/roomReq', authorize, isAdmin, onPutRoomReq)
+
+  .post('/residents', authorize, isManager, onPostResidents)
 
   .all('*', (ctx) => ctx.throw(405))
 

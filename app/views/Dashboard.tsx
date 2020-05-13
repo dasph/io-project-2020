@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Sidebar } from '../components/Sidebar'
 import { UserNavigaion } from '../components/UserNavigaion'
 import { Roomless } from '../components/Roomless'
+import { Residents } from '../components/Residents'
 import { RequestManager } from '../components/RequestManager'
 import request from '../request'
 
@@ -70,6 +71,7 @@ export default class Dashboard extends Component<Props, State> {
           { (rank < 2 || !roomless) &&
             <Switch>
               <Route path='/' exact />
+              <Route path='/residents' component={Residents} />
               <Route path='/requests' component={RequestManager} />
               <Route path='/announcements' />
               <Route path='/laundry' />

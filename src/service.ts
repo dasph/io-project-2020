@@ -1,5 +1,5 @@
 import * as Koa from 'koa'
-import { Op } from 'sequelize'
+import { Op, cast, col, where, and } from 'sequelize'
 import Validator from 'validator'
 import { readFileSync } from 'fs'
 import { createTransport } from 'nodemailer'
@@ -98,6 +98,12 @@ export const isAdmin: Koa.Middleware<TWebToken> = (ctx, next) => {
   const { rank } = ctx.state
 
   return rank > 0 ? ctx.throw(403) : next()
+}
+
+export const isManager: Koa.Middleware<TWebToken> = (ctx, next) => {
+  const { rank } = ctx.state
+
+  return rank > 1 ? ctx.throw(403) : next()
 }
 
 export const onSignup: Koa.Middleware = async (ctx) => {
@@ -216,4 +222,26 @@ export const onPutRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
   req.destroy()
 
   ctx.body = 200
+}
+
+export const onPostResidents: Koa.Middleware<TWebToken> = async (ctx) => {
+  const { iLike } = Op
+  const { room, firstname, lastname } = ctx.request.body as { room: string, firstname: string, lastname: string }
+
+  if ((typeof room !== 'string') || (room && !/^\d{1,3}$/.test(room))) return ctx.throw(400, 'Incorrect room number')
+  if (firstname && !/^[a-zA-Z ]+$/.test(firstname)) return ctx.throw(400, 'Incorrect firstname')
+  if (lastname && !/^[a-zA-Z ]+$/.test(lastname)) return ctx.throw(400, 'Incorrect lastname')
+
+  const rid = { [iLike]: room.length === 1 ? `${room}%` : room.length === 2 ? `%${room}` : room.length === 3 ? room : '%' }
+
+  const residents = await RoomOccupation.findAll({
+    where: and(
+      where(cast(col('rid'), 'text'), rid),
+      where(col('firstname'), { [iLike]: firstname ? `${firstname.trim()}%` : '%' }),
+      where(col('lastname'), { [iLike]: lastname ? `${lastname.trim()}%` : '%' })),
+    include: [UserInfo],
+    limit: 28
+  }).catch(console.error)
+
+  ctx.body = { residents }
 }

@@ -6,6 +6,7 @@ import './styles/sidebar.scss'
 
 const links = [
   { rank: 3, label: 'dashboard' },
+  { rank: 1, label: 'residents' },
   { rank: 0, label: 'requests' },
   { rank: 3, label: 'announcements' },
   { rank: 3, label: 'laundry' },

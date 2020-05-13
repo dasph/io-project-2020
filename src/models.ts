@@ -175,6 +175,9 @@ RoomOccupation.belongsTo(User, { foreignKey: 'id' })
 User.hasOne(RoomRequest, { foreignKey: 'id' })
 RoomRequest.belongsTo(User, { foreignKey: 'uid' })
 
+UserInfo.hasOne(RoomOccupation, { foreignKey: 'id' })
+RoomOccupation.belongsTo(UserInfo, { foreignKey: 'uid' })
+
 UserInfo.hasOne(RoomRequest, { foreignKey: 'id' })
 RoomRequest.belongsTo(UserInfo, { foreignKey: 'uid' })
 
