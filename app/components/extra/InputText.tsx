@@ -22,7 +22,8 @@ interface State {
 }
 
 const { isEmail, isMobilePhone } = Validator
-const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()\-=_+;:'"/?,<.>])(?=.{6,})/.test(password)
+// const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()\-=_+;:'"/?,<.>])(?=.{6,})/.test(password)
+const isValidPassword = (password: string) => /^(?=.*\w)(?=.{6,})/.test(password)
 
 export class InputText extends Component<Readonly<Props>, State> {
   input: React.RefObject<HTMLInputElement>
