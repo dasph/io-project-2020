@@ -44,8 +44,7 @@ const sendReqRes = (to: string, firstname: string, accepted: boolean) => {
   return createTransport(MAIL_SECRET).sendMail({ to, html, subject: 'Room request', from: 'Administration <admin@indorm.life>' })
 }
 
-// const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()\-=_+;:'"/?,<.>])(?=.{6,})/.test(password)
-const isValidPassword = (password: string) => /^(?=.*\w)(?=.{6,})/.test(password)
+const isValidPassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[`~!@#$%^&*()\-=_+;:'"/?,<.>])(?=.{6,})/.test(password)
 
 const validateSignup = async (payload: TSignupPayload) => {
   const { email, password, firstname, lastname, phone, dob } = payload
