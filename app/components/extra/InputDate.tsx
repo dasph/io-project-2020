@@ -41,7 +41,7 @@ export class InputDate extends Component<Readonly<Props>, State> {
       error: '',
       mode: 2,
       modal: false,
-      date: new Date(),
+      date: new Date(new Date().setFullYear(new Date().getFullYear() - 21)),
       pick: null
     }
 
