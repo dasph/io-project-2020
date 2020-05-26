@@ -19,12 +19,8 @@ type Props = {
 }
 
 export class Sidebar extends Component<Props, {}> {
-  constructor (props: Props) {
-    super(props)
-  }
-
   render () {
-    const { rank, disabled }  = this.props
+    const { rank, disabled } = this.props
 
     return (
       <div className='sidebar'>
@@ -33,7 +29,7 @@ export class Sidebar extends Component<Props, {}> {
           <span>indorm</span>
         </div>
         <Navbar className='align-items-start'>
-          {links.filter(({ rank: r }) => r >= rank ).map(({ label }, i) => (
+          {links.filter(({ rank: r }) => r >= rank).map(({ label }, i) => (
             <Nav.Link disabled={disabled} key={i} as={NavLink} exact to={i > 0 ? label : '/'}>
               <img src={`images/icon-${label}.svg`} />
               <span>{label}</span>

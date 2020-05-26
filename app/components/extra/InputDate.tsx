@@ -101,8 +101,8 @@ export class InputDate extends Component<Readonly<Props>, State> {
 
     if (!pick) return
 
-    const error = nofuture && new Date() < pick ? 'Data nie może być w przyszłości' : ''
-      || nopast && new Date() > pick ? 'Data nie może być w przeszłości' : ''
+    const error = (nofuture && new Date() < pick ? 'Data nie może być w przyszłości' : '') ||
+      (nopast && new Date() > pick ? 'Data nie może być w przeszłości' : '')
     const value = [pick.getDate(), pick.getMonth(), pick.getFullYear()].map((v, i) => `${i === 1 ? v + 1 : v}`.padStart(2, '0')).join(' / ')
 
     this.setState({ modal: false, value, error })

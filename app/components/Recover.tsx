@@ -4,7 +4,6 @@ import request from '../request'
 import { InputText } from './extra/InputText'
 import { Button } from './extra/Button'
 
-
 import './styles/recover.scss'
 
 interface State {
@@ -18,6 +17,7 @@ export class Recover extends Component<{}, State> {
     pass: React.RefObject<InputText>;
     pass2: React.RefObject<InputText>;
   };
+
   recovery: string | null;
 
   constructor (props) {
@@ -61,7 +61,7 @@ export class Recover extends Component<{}, State> {
 
     const payload = Object.entries(this.passws).map(([k, { current }]) => ({ [k]: current.value })).reduce((a, c) => ({ ...a, ...c }))
 
-    request('recover', {  method: 'PUT', body: JSON.stringify({ ...payload, token: decodeURIComponent(this.recovery) }) })
+    request('recover', { method: 'PUT', body: JSON.stringify({ ...payload, token: decodeURIComponent(this.recovery) }) })
       .then(() => this.setState({ step: 5 }))
       .catch((error) => this.setState({ step: 2, error }))
   }

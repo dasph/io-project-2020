@@ -6,7 +6,6 @@ import { createTransport } from 'nodemailer'
 import { createHmac, randomBytes, Hmac } from 'crypto'
 import { User, Room, RoomOccupation, RoomRequest, UserInfo } from './models'
 
-
 const { MAIL_SECRET, AUTH_SECRET, DOMAIN } = process.env
 
 const { isEmail, isMobilePhone } = Validator
@@ -211,7 +210,7 @@ export const onGetRecover: Koa.Middleware<TWebToken> = async (ctx) => {
 }
 
 export const onPutRecover: Koa.Middleware<TWebToken> = async (ctx) => {
-  const { token, pass, pass2 } = ctx.request.body as { token: string, pass: string, pass2: string }
+  const { token, pass, pass2 } = ctx.request.body as { token: string; pass: string; pass2: string }
 
   return verify2(token).then(async ({ id, prev, signed }) => {
     if (Date.now() - signed > 864e5) return ctx.throw(408)
@@ -222,7 +221,7 @@ export const onPutRecover: Koa.Middleware<TWebToken> = async (ctx) => {
     if (user.hmac.slice(0, 8) !== prev) return ctx.throw(408, 'Token already used')
 
     if (typeof pass !== 'string' || typeof pass2 !== 'string') return ctx.throw(400)
-    if (pass !== pass2) return ctx.throw(400, `Passwords don't match`)
+    if (pass !== pass2) return ctx.throw(400, 'Passwords don\'t match')
 
     const hmac = createHmac('sha256', AUTH_SECRET || '').update(pass).digest('base64')
 
@@ -259,7 +258,7 @@ export const onGetRooms: Koa.Middleware<TWebToken> = async (ctx) => {
 
 export const onPostRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
   const { id } = ctx.state
-  const { rid, expire } = ctx.request.body as { rid: number, expire: number }
+  const { rid, expire } = ctx.request.body as { rid: number; expire: number }
 
   if (!rid || !expire) return ctx.throw(400)
 
@@ -286,7 +285,7 @@ export const onGetRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
 }
 
 export const onPutRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
-  const { id, accept } = ctx.request.body as { id: string, accept: boolean }
+  const { id, accept } = ctx.request.body as { id: string; accept: boolean }
 
   if (!id || accept === undefined) return ctx.throw(400)
 
@@ -307,7 +306,7 @@ export const onPutRoomReq: Koa.Middleware<TWebToken> = async (ctx) => {
 
 export const onPostResidents: Koa.Middleware<TWebToken> = async (ctx) => {
   const { iLike } = Op
-  const { room, firstname, lastname } = ctx.request.body as { room: string, firstname: string, lastname: string }
+  const { room, firstname, lastname } = ctx.request.body as { room: string; firstname: string; lastname: string }
 
   if ((typeof room !== 'string') || (room && !/^\d{1,3}$/.test(room))) return ctx.throw(400, 'Incorrect room number')
   if (firstname && !/^[a-zA-Z ]+$/.test(firstname)) return ctx.throw(400, 'Incorrect firstname')

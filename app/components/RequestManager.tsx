@@ -12,7 +12,7 @@ type TRequest = {
     profileIcon: string;
     rank: number;
     createdAt: string;
-  }
+  };
   id: string;
   rid: number;
   expire: number;
@@ -38,7 +38,7 @@ export class RequestManager extends Component<{}, State> {
     const { requests } = this.state
 
     request('roomReq', { method: 'PUT', body: JSON.stringify({ id, accept }) })
-      .then(() => this.setState({ requests: requests.filter(({ id: i }) => i != id) }))
+      .then(() => this.setState({ requests: requests.filter(({ id: i }) => i !== id) }))
   }
 
   componentDidMount () {

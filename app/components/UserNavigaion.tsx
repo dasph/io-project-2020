@@ -17,10 +17,6 @@ const logout = () => {
 }
 
 export class UserNavigaion extends Component<Props, {}> {
-  constructor (props: Props) {
-    super(props)
-  }
-
   render () {
     const { path, disabled } = this.props
 

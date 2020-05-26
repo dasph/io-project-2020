@@ -101,7 +101,7 @@ export class Roomless extends Component<Props, State> {
                   className={`${!available || current >= max ? 'unavailable' : current > 0 ? 'occupied' : ''}`}
                   onClick={() => available && current < max && this.onPick(id)}
                   style={ id === pick ? { color: 'white', background: 'black' } : {}}
-                  >{id}</div>
+                >{id}</div>
               </OverlayTrigger>
             ))}
           </div>

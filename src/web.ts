@@ -5,9 +5,11 @@ import * as serve from 'koa-static'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
 import { Domain } from './koa-domain'
-import { onSignup, onConfirm, onLogin, authorize, isAdmin, isManager } from './service'
-import { onGetUserRes, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents } from './service'
-import { onPostRecover, onPutRecover, onGetRecover,  } from './service'
+import {
+  onSignup, onConfirm, onLogin, authorize, isAdmin, isManager,
+  onGetUserRes, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents,
+  onPostRecover, onPutRecover, onGetRecover
+} from './service'
 
 const { NODE_ENV, DOMAIN } = process.env
 

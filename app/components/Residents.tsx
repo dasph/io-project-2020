@@ -12,7 +12,7 @@ type TResident = {
     profileIcon: string;
     rank: number;
     createdAt: string;
-  }
+  };
   id: string;
   rid: number;
   expire: number;
