@@ -34,6 +34,12 @@ type TWebToken = {
   signed: number;
 }
 
+type TRecoveryToken = {
+  id: string;
+  prev: string;
+  signed: number;
+}
+
 const sendConfirm = (to: string, confirm: string) => {
   const html = confirmTemplate.replace(/{link}/g, `https://${DOMAIN}/signup?confirm=${confirm}`)
   return createTransport(MAIL_SECRET).sendMail({ to, html, subject: 'Potwierdzenie rejestracji', from: 'Confirm Indorm <confirm@indorm.life>' })
@@ -68,17 +74,9 @@ const validateSignup = async (payload: TSignupPayload) => {
   return new Error()
 }
 
-const hashObject = (obj: TWebToken) => Object.values(obj).reduce((a: Hmac, c) => a.update(`${c}`), createHmac('sha256', AUTH_SECRET || '')).digest('base64')
 const hashPayload = <T>(obj: T) => Object.values(obj).reduce((a: Hmac, c) => a.update(`${c}`), createHmac('sha256', AUTH_SECRET || '')).digest('base64')
 
-const sign = (payload: TWebToken) => {
-  const hash = hashObject(payload)
-  const json = JSON.stringify({ ...payload, hash })
-
-  return Buffer.from(json).toString('base64')
-}
-
-const sign2 = (payload: { [key: string]: any }) => {
+const sign = (payload: { [key: string]: any }) => {
   const signed = Date.now()
   const hash = hashPayload({ ...payload, signed })
   const json = JSON.stringify({ ...payload, signed, hash })
@@ -86,20 +84,10 @@ const sign2 = (payload: { [key: string]: any }) => {
   return Buffer.from(json).toString('base64')
 }
 
-const verify2 = async (token: string) => {
+const verify = async <T>(token: string) => {
   const string = Buffer.from(token, 'base64').toString()
-  const { hash, ...payload } = JSON.parse(string) as { [key: string]: any }
+  const { hash, ...payload } = JSON.parse(string) as T & { hash: string }
   const hmac = hashPayload(payload)
-
-  return hash === hmac
-    ? Promise.resolve(payload)
-    : Promise.reject(new Error('Hashes do not match'))
-}
-
-const verify = async (bearer: string) => {
-  const string = Buffer.from(bearer, 'base64').toString()
-  const { hash, ...payload }: { hash: string } & TWebToken = JSON.parse(string)
-  const hmac = hashObject(payload)
 
   return hash === hmac
     ? Promise.resolve(payload)
@@ -112,7 +100,7 @@ export const authorize: Koa.Middleware = (ctx, next) => {
 
   const [, bearer] = authorization.split(' ')
 
-  return verify(bearer || '').then((data: TWebToken) => {
+  return verify<TWebToken>(bearer || '').then((data) => {
     if (Date.now() - data.signed > 6e8) return ctx.throw(408)
     return Object.assign(ctx.state, data) && next()
   }).catch(() => ctx.throw(401))
@@ -170,7 +158,7 @@ export const onLogin: Koa.Middleware = async (ctx) => {
   if (!user) return ctx.throw(401)
 
   const info = await user.getUserInfo()
-  const bearer = sign({ signed: Date.now(), ...info.toJSON() } as TWebToken)
+  const bearer = sign(info.toJSON())
 
   ctx.body = { bearer }
 }
@@ -189,7 +177,7 @@ export const onPostRecover: Koa.Middleware<TWebToken> = async (ctx) => {
   const { firstname } = await user.getUserInfo()
 
   const payload = { id: user.id, prev: user.hmac.slice(0, 8) }
-  const token = encodeURIComponent(sign2(payload))
+  const token = encodeURIComponent(sign(payload))
 
   sendRecovery(email, firstname, token)
 }
@@ -197,7 +185,7 @@ export const onPostRecover: Koa.Middleware<TWebToken> = async (ctx) => {
 export const onGetRecover: Koa.Middleware<TWebToken> = async (ctx) => {
   const { token } = ctx.params as { token: string }
 
-  return verify2(token).then(async ({ id, prev, signed }) => {
+  return verify<TRecoveryToken>(token).then(async ({ id, prev, signed }) => {
     if (Date.now() - signed > 864e5) return ctx.throw(408)
 
     const user = await User.findByPk(id)
@@ -212,7 +200,7 @@ export const onGetRecover: Koa.Middleware<TWebToken> = async (ctx) => {
 export const onPutRecover: Koa.Middleware<TWebToken> = async (ctx) => {
   const { token, pass, pass2 } = ctx.request.body as { token: string; pass: string; pass2: string }
 
-  return verify2(token).then(async ({ id, prev, signed }) => {
+  return verify<TRecoveryToken>(token).then(async ({ id, prev, signed }) => {
     if (Date.now() - signed > 864e5) return ctx.throw(408)
 
     const user = await User.findByPk(id)

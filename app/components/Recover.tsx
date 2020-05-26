@@ -32,7 +32,7 @@ export class Recover extends Component<{}, State> {
     this.recovery = new URLSearchParams(window.location.search).get('recovery')
 
     this.state = {
-      step: this.recovery ? 3 : 5,
+      step: this.recovery ? 3 : 0,
       error: ''
     }
 
