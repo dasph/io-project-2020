@@ -16,6 +16,15 @@ const logout = () => {
   location.reload()
 }
 
+const i11n = new Map([
+  ['dashboard', 'Mój Panel'],
+  ['residents', 'Rezydenci'],
+  ['requests', 'Oczekujące'],
+  ['announcements', 'Ogłoszenia'],
+  ['laundry', 'Pralnia'],
+  ['tools', 'Narzędzia']
+])
+
 export class UserNavigaion extends Component<Props, {}> {
   render () {
     const { path, disabled } = this.props
@@ -23,7 +32,7 @@ export class UserNavigaion extends Component<Props, {}> {
     return (
       <Navbar className='user-navigaion justify-content-between' bg='dark' variant='dark'>
         <Navbar.Brand>
-          {path.slice(1) ? path.slice(1) : 'dashboard'}
+          {path.slice(1) ? i11n.get(path.slice(1)) : 'Mój Panel'}
         </Navbar.Brand>
 
         <Nav>
