@@ -5,12 +5,12 @@ import { Navbar, Nav } from 'react-bootstrap'
 import './styles/sidebar.scss'
 
 const links = [
-  { rank: 3, label: 'Mój Panel' },
-  { rank: 1, label: 'Rezydenci' },
-  { rank: 0, label: 'Oczekujące' },
-  { rank: 3, label: 'Ogłoszenia' },
-  { rank: 3, label: 'Pralnia' },
-  { rank: 3, label: 'Narzędzia' }
+  { rank: 3, label: 'Mój Panel', img: 'dashboard' },
+  { rank: 1, label: 'Rezydenci', img: 'residents' },
+  { rank: 0, label: 'Oczekujące', img: 'requests' },
+  { rank: 3, label: 'Ogłoszenia', img: 'announcements' },
+  { rank: 3, label: 'Pralnia', img: 'laundry' },
+  { rank: 3, label: 'Narzędzia', img: 'tools' }
 ]
 
 type Props = {
@@ -29,9 +29,9 @@ export class Sidebar extends Component<Props, {}> {
           <span>indorm</span>
         </div>
         <Navbar className='align-items-start'>
-          {links.filter(({ rank: r }) => r >= rank).map(({ label }, i) => (
-            <Nav.Link disabled={disabled} key={i} as={NavLink} exact to={i > 0 ? label : '/'}>
-              <img src={`images/icon-${label}.svg`} />
+          {links.filter(({ rank: r }) => r >= rank).map(({ label, img }, i) => (
+            <Nav.Link disabled={disabled} key={i} as={NavLink} exact to={i > 0 ? img : '/'}>
+              <img src={`images/icon-${img}.svg`} />
               <span>{label}</span>
             </Nav.Link>
           ))}
