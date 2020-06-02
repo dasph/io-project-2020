@@ -77,29 +77,29 @@ export class Residents extends Component<{}, State> {
       <Table striped bordered hover variant='dark'>
         <thead>
           <tr className='text-center'>
-            <th className='align-middle'>Room</th>
-            <th className='align-middle'>Picture</th>
-            <th className='align-middle'>First Name</th>
-            <th className='align-middle'>Last Name</th>
-            <th className='align-middle'>Date of Birth</th>
-            <th className='align-middle'>Phone</th>
+            <th className='align-middle'>Pokój</th>
+            <th className='align-middle'>Zdjęcie</th>
+            <th className='align-middle'>Imię</th>
+            <th className='align-middle'>Nazwisko</th>
+            <th className='align-middle'>Data urodzenia</th>
+            <th className='align-middle'>Telefon</th>
           </tr>
         </thead>
         <tbody>
           <tr className='text-center'>
             <td>
-              <Form.Control size='lg' type='text' placeholder='number' value={room} onChange={this.onRoomChange} />
+              <Form.Control size='lg' type='text' placeholder='numer pokoju' value={room} onChange={this.onRoomChange} />
             </td>
             <td />
             <td>
               <Form.Control
-                size='lg' type='text' name='firstname' placeholder='firstname' value={firstname} onChange={this.onNameChange}
+                size='lg' type='text' name='firstname' placeholder='imię' value={firstname} onChange={this.onNameChange}
                 autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false' maxLength={32}
               />
             </td>
             <td>
               <Form.Control
-                size='lg' type='text' name='lastname' placeholder='lastname' value={lastname} onChange={this.onNameChange}
+                size='lg' type='text' name='lastname' placeholder='nazwisko' value={lastname} onChange={this.onNameChange}
                 autoCapitalize='off' autoComplete='off' autoCorrect='off' spellCheck='false' maxLength={32}
               />
             </td>

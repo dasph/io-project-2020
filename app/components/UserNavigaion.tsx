@@ -28,9 +28,9 @@ export class UserNavigaion extends Component<Props, {}> {
 
         <Nav>
           <NavDropdown title={<img src='images/icon-settings.svg' />} id={null} disabled={disabled}>
-            <NavDropdown.Item as={NavLink} to='/settings'>Settings</NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to='/settings'>Ustawienia</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link onClick={logout}>Log out</Nav.Link>
+          <Nav.Link onClick={logout}>Wyloguj</Nav.Link>
         </Nav>
       </Navbar>
     )

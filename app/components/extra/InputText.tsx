@@ -56,7 +56,7 @@ export class InputText extends Component<Readonly<Props>, State> {
     const { required, phone } = this.props
     const { value } = event.target
 
-    const error = required && !value ? 'this field is required' : ''
+    const error = required && !value ? 'to pole jest wymagane' : ''
 
     if (phone) {
       if (value.length < 4) return this.setState({ value: '+48 ' })

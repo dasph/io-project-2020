@@ -54,14 +54,14 @@ export class RequestManager extends Component<{}, State> {
       <Table striped bordered hover variant='dark'>
         <thead>
           <tr className='text-center'>
-            <th className='align-middle'>Picture</th>
-            <th className='align-middle'>First Name</th>
-            <th className='align-middle'>Last Name</th>
-            <th className='align-middle'>Date of Birth</th>
-            <th className='align-middle'>Phone</th>
-            <th className='align-middle'>Room</th>
-            <th className='align-middle'>Until</th>
-            <th className='align-middle'>Action</th>
+            <th className='align-middle'>Zdjęcie</th>
+            <th className='align-middle'>Imię</th>
+            <th className='align-middle'>Nazwisko</th>
+            <th className='align-middle'>Data urodzenia</th>
+            <th className='align-middle'>Telefon</th>
+            <th className='align-middle'>Pokój</th>
+            <th className='align-middle'>Wymeldowanie</th>
+            <th className='align-middle'>Akcje</th>
           </tr>
         </thead>
         <tbody>
@@ -75,8 +75,8 @@ export class RequestManager extends Component<{}, State> {
               <td>{rid}</td>
               <td>{new Date(expire).toLocaleDateString()}</td>
               <td className=''>
-                <Button variant='success' size='lg' style={{ margin: '0px 5px' }} onClick={() => this.onAction(id, true)}>Accept</Button>
-                <Button variant='warning' size='lg' style={{ margin: '0px 5px' }} onClick={() => this.onAction(id, false)}>Decline</Button>
+                <Button variant='success' size='lg' style={{ margin: '0px 5px' }} onClick={() => this.onAction(id, true)}>Akceptuj</Button>
+                <Button variant='warning' size='lg' style={{ margin: '0px 5px' }} onClick={() => this.onAction(id, false)}>Odrzuć</Button>
               </td>
             </tr>
           ))}

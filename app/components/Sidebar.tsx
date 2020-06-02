@@ -5,12 +5,12 @@ import { Navbar, Nav } from 'react-bootstrap'
 import './styles/sidebar.scss'
 
 const links = [
-  { rank: 3, label: 'dashboard' },
-  { rank: 1, label: 'residents' },
-  { rank: 0, label: 'requests' },
-  { rank: 3, label: 'announcements' },
-  { rank: 3, label: 'laundry' },
-  { rank: 3, label: 'tools' }
+  { rank: 3, label: 'Mój Panel' },
+  { rank: 1, label: 'Rezydenci' },
+  { rank: 0, label: 'Oczekujące' },
+  { rank: 3, label: 'Ogłoszenia' },
+  { rank: 3, label: 'Pralnia' },
+  { rank: 3, label: 'Narzędzia' }
 ]
 
 type Props = {

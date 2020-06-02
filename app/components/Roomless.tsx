@@ -78,9 +78,9 @@ export class Roomless extends Component<Props, State> {
     return (
       <Jumbotron className='roomless'>
         <div className={step === 0 ? '' : 'hide'}>
-          <span>Hello, {firstname}</span>
-          <span>In order to start using this app you will need to create a request for a room 🏘</span>
-          <Button variant='dark' size='lg' onClick={() => this.setState({ step: 1 })}>Pick a room</Button>
+          <span>Cześć, {firstname}!</span>
+          <span>Aby korzystać z aplikacji, musisz zarezerwować pokój 🏘</span>
+          <Button variant='dark' size='lg' onClick={() => this.setState({ step: 1 })}>Wybierz pokój</Button>
         </div>
 
         <div className={step === 1 ? '' : 'hide'}>
@@ -88,7 +88,7 @@ export class Roomless extends Component<Props, State> {
             <span>select floor: </span>
             <Dropdown as={ButtonGroup}>
               <Button variant='secondary' size='lg'>{floor || '?'}</Button>
-              <Dropdown.Toggle split variant='outline-secondary' id=''/>
+              <Dropdown.Toggle split variant='outline-secondary' id='' />
               <Dropdown.Menu>
                 {[1, 2, 3, 4].map((f, i) => <Dropdown.Item key={i} onClick={() => this.onFloorSelect(f)}>{f}</Dropdown.Item>)}
               </Dropdown.Menu>
@@ -100,18 +100,18 @@ export class Roomless extends Component<Props, State> {
                 <div
                   className={`${!available || current >= max ? 'unavailable' : current > 0 ? 'occupied' : ''}`}
                   onClick={() => available && current < max && this.onPick(id)}
-                  style={ id === pick ? { color: 'white', background: 'black' } : {}}
+                  style={id === pick ? { color: 'white', background: 'black' } : {}}
                 >{id}</div>
               </OverlayTrigger>
             ))}
           </div>
-          {pick && <InputDate icon='bookmark' placeholder='pick a date' nopast ref={this.inputDate} style={{ fontSize: '0.6em' }} onSubmit={() => this.setState({ expire: this.inputDate.current.value })} /> }
-          <Button variant='dark' size='lg' disabled={!pick || !expire || Date.now() > expire} onClick={this.onSubmit}>Submit</Button>
+          {pick && <InputDate icon='bookmark' placeholder='pick a date' nopast ref={this.inputDate} style={{ fontSize: '0.6em' }} onSubmit={() => this.setState({ expire: this.inputDate.current.value })} />}
+          <Button variant='dark' size='lg' disabled={!pick || !expire || Date.now() > expire} onClick={this.onSubmit}>Zatwierdź</Button>
         </div>
 
         <div className={step === 2 ? '' : 'hide'}>
           <span>Dear, {firstname}</span>
-          <span>We received your request, plase be patient and await its validation</span>
+          <span>Otrzymaliśmy twoją prośbę o rezerwację, wkrótce otrzymasz informację o jej rozpatrzeniu</span>
         </div>
 
         <div className={step === 3 ? '' : 'hide'}>
