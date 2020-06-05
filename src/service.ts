@@ -219,16 +219,18 @@ export const onPutRecover: Koa.Middleware<TWebToken> = async (ctx) => {
   }).catch(() => ctx.throw(404))
 }
 
-export const onGetUserRes: Koa.Middleware<TWebToken> = async (ctx) => {
+export const onGetUser: Koa.Middleware<TWebToken> = async (ctx) => {
   const { id } = ctx.state
 
-  const occ = await RoomOccupation.findOne({ where: { uid: id }, attributes: { exclude: ['id'] } })
+  const occ = await RoomOccupation.findOne({ where: { uid: id }, attributes: { exclude: ['id', 'createdAt'] } })
   if (!occ) {
     const req = await RoomRequest.findOne({ where: { uid: id } })
     return (ctx.body = { error: req ? 2 : 1 })
   }
 
-  ctx.body = occ.toJSON()
+  const info = await occ.getUserInfo({ attributes: { exclude: ['id'] } })
+
+  ctx.body = { ...info.toJSON(), ...occ.toJSON() }
 }
 
 export const onGetRooms: Koa.Middleware<TWebToken> = async (ctx) => {

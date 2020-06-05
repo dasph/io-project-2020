@@ -7,7 +7,7 @@ import * as bodyParser from 'koa-bodyparser'
 import { Domain } from './koa-domain'
 import {
   onSignup, onConfirm, onLogin, authorize, isAdmin, isManager,
-  onGetUserRes, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents,
+  onGetUser, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents,
   onPostRecover, onPutRecover, onGetRecover
 } from './service'
 
@@ -34,7 +34,7 @@ const api = new Router()
   .put('/recover', onPutRecover)
   .get('/recover/:token', onGetRecover)
 
-  .get('/userRes', authorize, onGetUserRes)
+  .get('/user', authorize, onGetUser)
   .get('/rooms/:floor', authorize, onGetRooms)
   .post('/roomReq', authorize, onPostRoomReq)
 

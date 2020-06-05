@@ -57,6 +57,8 @@ type TRoomOccupation = Model & {
   readonly rid: number;
   readonly expire: Date;
   readonly createdAt: Date;
+
+  getUserInfo: HasOneGetAssociationMixin<TUserInfo>;
 }
 
 export const User = sequelize.define('User', {

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Sidebar } from '../components/Sidebar'
 import { UserNavigaion } from '../components/UserNavigaion'
 import { Roomless } from '../components/Roomless'
+import { UserPanel } from '../components/UserPanel'
 import { Residents } from '../components/Residents'
 import { RequestManager } from '../components/RequestManager'
 import request from '../request'
@@ -24,8 +25,20 @@ type TUserInfo = {
   signed: number;
 }
 
+type TUserPanel = {
+  dob: string;
+  expire: string;
+  firstname: string;
+  lastname: string;
+  phone: number;
+  rank: number;
+  rid: number;
+  uid: string;
+}
+
 type State = {
   roomless: number;
+  panel: TUserPanel;
 }
 
 export default class Dashboard extends Component<Props, State> {
@@ -35,7 +48,8 @@ export default class Dashboard extends Component<Props, State> {
     super(props)
 
     this.state = {
-      roomless: 0
+      roomless: 0,
+      panel: null
     }
 
     try {
@@ -47,16 +61,17 @@ export default class Dashboard extends Component<Props, State> {
   }
 
   componentDidMount () {
-    request('userRes').then(({ error, ...payload }) => {
+    request('user').then(({ error, ...payload }) => {
       if (error) {
         return this.setState({ roomless: error })
       }
+      this.setState({ panel: payload })
     })
   }
 
   render () {
-    const { roomless } = this.state
-    const { firstname, lastname, rank } = this.userInfo
+    const { roomless, panel } = this.state
+    const { firstname, rank } = this.userInfo
 
     return (
       <BrowserRouter>
@@ -66,11 +81,11 @@ export default class Dashboard extends Component<Props, State> {
             {({ location: { pathname } }) => <UserNavigaion rank={rank} path={pathname} disabled={rank > 1 && !!roomless} />}
           </Route>
 
-          {rank > 1 && roomless && <Roomless firstname={firstname} step={roomless === 1 ? 0 : 2} />}
+          {(rank > 1 && roomless) ? <Roomless firstname={firstname} step={roomless === 1 ? 0 : 2} /> : null}
 
           { (rank < 2 || !roomless) &&
             <Switch>
-              <Route path='/' exact />
+              <Route path='/' exact render={(props) => <UserPanel {...props} {...panel} />} />
               <Route path='/residents' component={Residents} />
               <Route path='/requests' component={RequestManager} />
               <Route path='/announcements' />
