@@ -16,8 +16,6 @@ export class UserPanel extends Component<Props, {}> {
   render () {
     const { firstname, expire, rid } = this.props
 
-    console.log(this.props)
-
     return (
       <div style={{ padding: '5px' }}>
         <h1 style={{ fontSize: '3em', paddingBottom: '10px' }}>Witamy, {firstname}</h1>
