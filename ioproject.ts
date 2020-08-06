@@ -7,4 +7,4 @@ console.log('Ξ Launching @io-project-2020')
 
 NODE_ENV === 'production'
   ? createSecureServer(Web).listen(PORT)
-  : createServer(Web).listen(80)
+  : createServer(Web).listen(PORT)
