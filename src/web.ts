@@ -11,13 +11,7 @@ import {
   onPostRecover, onPutRecover, onGetRecover
 } from './service'
 
-const { NODE_ENV, DOMAIN } = process.env
-
-const prod = NODE_ENV === 'production'
-
-const redir: Koa.Middleware = (ctx, next) => {
-  return (!prod || ctx.request.host.indexOf(DOMAIN || '') !== -1) ? next() : ctx.redirect(`https://${DOMAIN}`)
-}
+const { DOMAIN } = process.env
 
 const main = new Router()
   .use(serve('./public'))
@@ -49,8 +43,6 @@ const domain = new Domain()
   .use('', main.routes())
   .use('api', api.routes())
 
-export default new Koa()
-  .use(redir)
+export const Web = new Koa()
   .use(domain.routes())
   .use((ctx) => ctx.redirect(`https://${DOMAIN}`))
-  .callback()

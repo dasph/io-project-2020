@@ -5,12 +5,11 @@ import { IncomingMessage } from 'http'
 import * as bodyPaser from 'koa-bodyparser'
 import { request, RequestOptions } from 'https'
 import { createHmac, timingSafeEqual } from 'crypto'
-import { createSecureServer } from './src/servers'
 
 type SlackRequestOptions = RequestOptions & { hostname: 'hooks.slack.com'; payload: string }
 type HastebinRequestOptions = RequestOptions & { hostname: 'hastebin.com'; payload: string }
 
-const { WEBHOOK_SECRET, SLACK_NOTIFIER } = process.env
+const { WEBHOOK_PORT, WEBHOOK_SECRET, SLACK_NOTIFIER } = process.env
 
 const run = promisify(exec)
 const message = (head: string, state: string, key: string) => `> Head \`${head}\`: deployment *${state}*\n> Logs can be found <https://hastebin.com/${key}|here>`
@@ -82,12 +81,10 @@ const deploy: Koa.Middleware = (ctx) => {
   ctx.body = 'OK'
 }
 
-const app = new Koa()
+new Koa()
   .use((ctx, next) => ctx.header['x-github-event'] === 'push' ? next() : ctx.throw(400))
   .use(bodyPaser())
   .use((ctx, next) => ctx.request.body.ref === 'refs/heads/master' ? next() : (ctx.status = 204))
   .use(verify)
   .use(deploy)
-  .callback()
-
-createSecureServer(app, { allowHTTP1: true }).listen(8080)
+  .listen(WEBHOOK_PORT)
