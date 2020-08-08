@@ -4,20 +4,18 @@ import * as cors from '@koa/cors'
 import * as serve from 'koa-static'
 import * as Router from 'koa-router'
 import * as bodyParser from 'koa-bodyparser'
-import { Domain } from './koa-domain'
 import {
   onSignup, onConfirm, onLogin, authorize, isAdmin, isManager,
   onGetUser, onGetRooms, onPostRoomReq, onGetRoomReq, onPutRoomReq, onPostResidents,
   onPostRecover, onPutRecover, onGetRecover
 } from './service'
 
-const { DOMAIN } = process.env
-
-const main = new Router()
+export const main = new Koa().use(new Router()
   .use(serve('./public'))
   .get('*', (ctx) => send(ctx, 'public/index.html'))
+  .routes())
 
-const api = new Router()
+export const api = new Koa().use(new Router()
   .use(cors())
   .use(bodyParser())
   .post('/signup', onSignup)
@@ -38,11 +36,4 @@ const api = new Router()
   .post('/residents', authorize, isManager, onPostResidents)
 
   .all('*', (ctx) => ctx.throw(405))
-
-const domain = new Domain()
-  .use('', main.routes())
-  .use('api', api.routes())
-
-export const Web = new Koa()
-  .use(domain.routes())
-  .use((ctx) => ctx.redirect(`https://${DOMAIN}`))
+  .routes())

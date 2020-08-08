@@ -1,6 +1,7 @@
-import { Web } from './src/web'
+import { main, api } from './src/web'
 
-const { PORT } = process.env
+const { MAIN_PORT, API_PORT } = process.env
 
 console.log('Ξ Launching @indorm')
-Web.listen(PORT)
+main.listen(MAIN_PORT)
+api.listen(API_PORT)
