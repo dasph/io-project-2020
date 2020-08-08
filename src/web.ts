@@ -1,4 +1,3 @@
-import * as Koa from 'koa'
 import * as send from 'koa-send'
 import * as cors from '@koa/cors'
 import * as serve from 'koa-static'
@@ -10,12 +9,11 @@ import {
   onPostRecover, onPutRecover, onGetRecover
 } from './service'
 
-export const main = new Koa().use(new Router()
+export const main = new Router()
   .use(serve('./public'))
   .get('*', (ctx) => send(ctx, 'public/index.html'))
-  .routes())
 
-export const api = new Koa().use(new Router()
+export const api = new Router()
   .use(cors())
   .use(bodyParser())
   .post('/signup', onSignup)
@@ -36,4 +34,3 @@ export const api = new Koa().use(new Router()
   .post('/residents', authorize, isManager, onPostResidents)
 
   .all('*', (ctx) => ctx.throw(405))
-  .routes())

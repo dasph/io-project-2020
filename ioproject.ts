@@ -1,7 +1,8 @@
+import * as Koa from 'koa'
 import { main, api } from './src/web'
 
 const { PORT, API_PORT } = process.env
 
 console.log('Ξ Launching @indorm')
-main.listen(PORT)
-api.listen(API_PORT)
+new Koa().use(main.routes()).listen(PORT)
+new Koa().use(api.routes()).listen(API_PORT)
